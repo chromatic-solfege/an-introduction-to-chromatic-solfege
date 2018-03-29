@@ -1,0 +1,154 @@
+
+%\documentclass[twoside,a4paper]{article}
+\documentclass[a4paper]{article}
+\usepackage[a4paper]{geometry}
+% \usepackage{showframe}
+
+%\usepackage[T1]{fontenc}
+%\usepackage{accanthis}
+\usepackage{librebaskerville}
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\date{}
+\graphicspath{ {ly-generated/} {ly-manual/} }
+\title{All about Polyrhythm}
+\author{Atsushi Oka}
+
+
+\usepackage{titlesec}
+\setcounter{secnumdepth}{3}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries\slshape\footnotesize}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{-1pt}{3.25ex plus 1ex minus .2ex}{-.5ex plus .2ex}
+
+
+% PATCHING TITLESEC BUG 
+% https://tex.stackexchange.com/questions/299969/
+
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
+
+\begin{document}
+
+
+\maketitle
+\tableofcontents
+
+\begin{abstract}
+	In this paper, we will discuss about polyrhythms.
+\end{abstract}
+
+~\newline
+
+\def \quotes [#1] #2 {%
+	\begin{quote}
+		\itshape\small\raggedleft
+		\parbox{250pt} {
+			#2
+			\begin{flushright}
+				\small{--- #1}
+			\end{flushright}
+		}
+	\end{quote}
+	~\newline
+}
+
+\quotes[Robert C. Martin, Clean Code] {
+	The only way to make the deadline --- the only way to go fast --- is to keep the code as clean as possible at all times.
+}
+\quotes[Edsger Dijkstra] {
+	If debugging is the process of removing software bugs, then programming must be the process of putting them in.
+}
+\quotes[Srinivasa Ramanujan] {
+	"No," he replied, "it is a very interesting number; it is the smallest number expressible as the sum of two cubes in two different ways."
+}
+\quotes[Edsger W. Dijkstra] {
+	Do only what only you can do.
+}
+
+
+
+\section{Introduction}
+Here is the text of your introduction.
+
+The number of total pulses is calculated by multiplying tuplets, beats and measures.
+
+	\begin{equation}
+	\label{A total pulses of a bar group}
+	tuplets \times beats \times bars = pulses 
+	\end{equation}
+
+
+If four times swings is applied to the equation, 
+
+~
+\begin{equation}
+\label{A total pulses of four time swing }
+3 tuplets \times 4 beats \times 1 bar = 12 pulses
+\end{equation}
+
+
+
+
+\begin{equation}
+\label{simple_equation}
+\alpha = \sqrt{ \beta }
+\end{equation}
+
+\begin{equation}
+\label{einstein}
+e=mc^2
+\end{equation}
+
+Hello this is what  \textsuperscript{th} I say.
+
+
+\subsection{Subsection Heading Here}
+Write your subsection text here.
+
+\begin{figure}
+    \centering
+%    \includegraphics[width=3.0in]{myfigure}
+    \caption{Simulation Results}
+    \label{simulationfigure}
+\end{figure}
+
+\section{Discussion}
+Discuss here.
+
+\subsection{Emphasizing the Last Note in a Note Group}
+
+\quotes[William Shakespeare] {
+	All's well that ends well.
+}
+
+\quotes[Atsushi Oka] {
+	Rhythm is like your lover; you will be glad if she/he comes earlier,but you will be disappointed if she/he comes late --- but you will also get bored if it always comes in time.
+}
+
+~\newline
+aa
+
+\input{ly-generated/output.tex}
+
+
+
+
+
+
+
+
+
+
+\section{Conclusion}
+Write your conclusion here.
+
+\end{document}
+
+
