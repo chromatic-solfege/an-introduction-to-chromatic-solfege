@@ -21,6 +21,8 @@
 
 
 
+
+
 \usepackage{titlesec}
 \setcounter{secnumdepth}{3}
 \titleformat{\paragraph}
@@ -64,6 +66,46 @@
 \usepackage{subcaption}
 
 
+%\usepackage{attachfile2}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+\input tikz
+
+\def\slant#1#2{%
+	\tikz[baseline=(X.base), xslant=tan(#1)]
+	\node[inner sep=0pt, xslant=tan(#1)](X){#2};%
+}
+\def \caccidental#1{%
+	\kern -0.70em \slant{15}{%
+		\textsuperscript{ \scalebox{.9}{ #1 } }%
+	}%
+	\kern -0.70em %
+}
+\def \csharp {%
+	\caccidental{ \sharp }%
+}
+\def \cflat{%
+	\caccidental{ \flat  }% 
+}
+\def \cnatural{%
+	\caccidental{ \natural }%
+}
+
+% \usepackage{letltxmacro}
+% \LetLtxMacro{\orgsharp}{\sharp}
+% \renewcommand{\sharp}{ \caccidental{ \orgsharp } }
+% \LetLtxMacro{\orgflat}{\flat}
+% \renewcommand{\flat}{ \caccidental{ \orgflat } }
+% \LetLtxMacro{\orgnatural}{\natural}
+% \renewcommand{\natural}{ \caccidental{ \orgnatural } }
+
 
 % BEGIN DOCUMENT >>>
 
@@ -87,7 +129,7 @@ In modern music, many compositions are polymodal. In order to obtain better unde
 
 \section{Introduction}
 
-In the modern diatonic based interval system, there are certain missing intervals which do not exist without irregular accidentals such as double flat, double sharp, C\flat , F\flat. E\sharp and B\sharp. For example G\flat does not have the perfect 4th interval without an irregular flatted note C\flat.  Enharmonically speaking, C\flat is B\natural; but harmonically speaking, B\natural from G\flat is the augmented major 3rd rather than the perfect 4th. 
+In the modern diatonic based interval system, there are certain missing intervals which do not exist without irregular accidentals such as double flat, double sharp, C\cflat , F\cflat. E\csharp and B\csharp. For example G\flat does not have the perfect 4th interval without an irregular flatted note C\flat.  Enharmonically speaking, C\flat is B\natural; but harmonically speaking, B\natural from G\flat is the augmented major 3rd rather than the perfect 4th. 
 
 In modern music, most tunes are played in equal temperament. Especially in jazz music in 1980’s or later, the scales are premised equal temperament and players frequently modulate tonality of tunes. However, the music notation is still using the diatonic based interval system; therefore it is still necessary to go through the complication of the missing intervals.
 
@@ -125,44 +167,46 @@ Intervals ri fa are not major 2nd but diminished 3rd. In order to keep consisten
 ~\newpage
 \section{Basics}
 
-\input{ly-generated/basic-output.tex}
+\input{ly-generated/ch-000-basic-output.tex}
 
 \pagebreak
 \section{Exercise to Build Fluency}
 
-Recite all spellings. Read aloud repeatedly until you can recite without reading the spellings.
+Read aloud repeatedly until you can recite without seeing the actual spells.
+\input{ly-generated/ch-001-notenames-output.tex}
+\input{ly-generated/ch-002-diatonic-output.tex}
 
-\input{ly-generated/notenames-output.tex}
-
-\input{ly-generated/diatonic-output.tex}
-\input{ly-generated/interval-output.tex}
-
-\newcommand{\scalesDescription} { hello }
 
 \section{Scales}
 
 In this theory, all scales are related to closest minor scale. Rotation is a method to derive all related scales on a scale. (under construction)\\
 
 \subsection { Primitive Scales }
-
-\input{ly-generated/scales-output.tex}
+\input{ly-generated/ch-003-scales-basic-output.tex}
 
 \subsection { Derived Scales }
 
-\subsubsection { Dorian Mode Scales }
-\input{ly-generated/scales-dorian-output.tex}
-\subsubsection { Melodic Minor Mode Scales }
-\input{ly-generated/scales-melodic-output.tex}
+\subsubsection { Dorian Mode Derived Scales }
+\input{ly-generated/ch-004-scales-dorian-output.tex}
+\subsubsection { Melodic Minor Mode Derived Scales }
+\input{ly-generated/ch-005-scales-melodic-output.tex}
+\subsubsection { Harmonic Minor Mode Derived Scales }
+\input{ly-generated/ch-006-scales-harmonic-output.tex}
+\subsubsection { Melodic Minor \sharp Mode Derived Scales }
+\input{ly-generated/ch-007-scales-melodic-s11-output.tex}
+
+\subsection { Exercise to Acquire the Senses of Tonality}
+\input{ly-generated/ch-008-scales-exercise-output.tex}
 
 
-\subsection { Exercise }
-\subsubsection { Dorian Scales }
-\input{ly-generated/scales-practice-dorian-output.tex}
+\section{Exercise to Acquire Better Understanding for Intervals}
+\input{ly-generated/cd-009-interval-output.tex}
 
 \section{Conclusion}
 Conclude. % XXX
 
 
+
 \end{document}
 
-
+% vim: wrap linebreak spell :
