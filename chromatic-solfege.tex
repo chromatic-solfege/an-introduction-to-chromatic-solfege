@@ -86,7 +86,7 @@
 	\kern -0.70em \slant{15}{%
 		\textsuperscript{ \scalebox{.9}{ #1 } }%
 	}%
-	\kern -0.70em %
+	\kern -0.40em %
 }
 \def \csharp {%
 	\caccidental{ \sharp }%
@@ -117,10 +117,12 @@
 
 \maketitle
 
+
 \begin{abstract}
 	\textbf{\textit{ UNFINISHED 1 Apr 2018 }} \\
 	
 In modern music, many compositions are polymodal. In order to obtain better understanding for polymodality, let’s extend traditional diatonic solfège to chromatic. This article will explain a method to extend the traditional solfège into chromatic by introducing new note names which was invented by Aaron Shearer and show how to build fluency with the notes by enumerating all the irregular cases which the current diatonic based interval system consists.
+
 \end{abstract}
 
 ~\\
@@ -129,11 +131,11 @@ In modern music, many compositions are polymodal. In order to obtain better unde
 
 \section{Introduction}
 
-In the modern diatonic based interval system, there are certain missing intervals which do not exist without irregular accidentals such as double flat, double sharp, C\cflat , F\cflat. E\csharp and B\csharp. For example G\flat does not have the perfect 4th interval without an irregular flatted note C\flat.  Enharmonically speaking, C\flat is B\natural; but harmonically speaking, B\natural from G\flat is the augmented major 3rd rather than the perfect 4th. 
+In the modern diatonic based interval system, there are certain missing intervals which do not exist without irregular accidentals such as double flat, double sharp, C\cflat , F\cflat. E\csharp and B\csharp. For example G\cflat does not have the perfect 4th interval without an irregular flatted note C\cflat.  Enharmonically speaking, C\cflat is B\cnatural; but harmonically speaking, B\cnatural from G\cflat is the augmented major 3rd rather than the perfect 4th. 
 
 In modern music, most tunes are played in equal temperament. Especially in jazz music in 1980’s or later, the scales are premised equal temperament and players frequently modulate tonality of tunes. However, the music notation is still using the diatonic based interval system; therefore it is still necessary to go through the complication of the missing intervals.
 
-In general, it is preferable to write intervals with harmonically correct name; for example, writing G\flat major scale’s 4th note as C\flat rather than B\natural is preferable because B\natural is not 4th but augmented major 3rd. In practical use,  However, harmonic correctness is often intentionally disregarded because it does not employ how to play it on musical instruments; therefore it is also very common to write C\flat as B\natural in this case. The modern musical instruments are based on equal temperament; in spite of the note that a player should play is harmonically C\flat, the player has to manipulate their instrument as if the note is B\natural.
+In general, it is preferable to write intervals with harmonically correct name; for example, writing G\cflat major scale’s 4th note as C\cflat rather than B\cnatural is preferable because B\cnatural is not 4th but augmented major 3rd. In practical use,  However, harmonic correctness is often intentionally disregarded because it does not employ how to play it on musical instruments; therefore it is also very common to write C\cflat as B\cnatural in this case. The modern musical instruments are based on equal temperament; in spite of the note that a player should play is harmonically C\cflat, the player has to manipulate their instrument as if the note is B\cnatural.
 
 There are many inconsistently written notes in practical world. In order to obtain faster reading ability, let’s name all the intervals chromatically at first; then enumerate all the possible irregular intervals, and we categorize them into three classes, and train ourselves to build fluency to irregularity.
 
@@ -151,8 +153,10 @@ There are many inconsistently written notes in practical world. In order to obta
 }
 
 ~\newpage
+
 \tableofcontents
 
+~\newpage
 
 \subsection { What is Enharmonicity }
 (under construction)
@@ -163,49 +167,22 @@ There are many inconsistently written notes in practical world. In order to obta
 
 Intervals ri fa are not major 2nd but diminished 3rd. In order to keep consistency of intervals, it is considered more consistent to write ri fa as ri ma or me fa. In the same manner, li do may be written as li ta or te do.
 
-
 ~\newpage
-\section{Basics}
 
-\input{ly-generated/ch-000-basic-output.tex}
+\input{ly-generated/all-output.tex}
 
-\pagebreak
-\section{Exercise to Build Fluency}
-
-Read aloud repeatedly until you can recite without seeing the actual spells.
-\input{ly-generated/ch-001-notenames-output.tex}
-\input{ly-generated/ch-002-diatonic-output.tex}
-
-
-\section{Scales}
-
-In this theory, all scales are related to closest minor scale. Rotation is a method to derive all related scales on a scale. (under construction)\\
-
-\subsection { Primitive Scales }
-\input{ly-generated/ch-003-scales-basic-output.tex}
-
-\subsection { Derived Scales }
-
-\subsubsection { Dorian Mode Derived Scales }
-\input{ly-generated/ch-004-scales-dorian-output.tex}
-\subsubsection { Melodic Minor Mode Derived Scales }
-\input{ly-generated/ch-005-scales-melodic-output.tex}
-\subsubsection { Harmonic Minor Mode Derived Scales }
-\input{ly-generated/ch-006-scales-harmonic-output.tex}
-\subsubsection { Melodic Minor \sharp Mode Derived Scales }
-\input{ly-generated/ch-007-scales-melodic-s11-output.tex}
-
-\subsection { Exercise to Acquire the Senses of Tonality}
-\input{ly-generated/ch-008-scales-exercise-output.tex}
-
-
-\section{Exercise to Acquire Better Understanding for Intervals}
-\input{ly-generated/cd-009-interval-output.tex}
+% \input{ly-generated/ch-000-basic-output.tex}
+% \input{ly-generated/ch-010-basic-exercise-output.tex}
+% \input{ly-generated/ch-020-diatonic-output.tex}
+% \input{ly-generated/ch-040-chromatic-output.tex}
+% \input{ly-generated/ch-050-pre-exercise-output.tex}
+% \input{ly-generated/ch-060-pre-exercise-output.tex}
+% \input{ly-generated/ch-070-scales-basic-output.tex}
+% \input{ly-generated/ch-080-scales-exercise-output.tex}
+% \input{ly-generated/ch-100-interval-output.tex}
 
 \section{Conclusion}
 Conclude. % XXX
-
-
 
 \end{document}
 
