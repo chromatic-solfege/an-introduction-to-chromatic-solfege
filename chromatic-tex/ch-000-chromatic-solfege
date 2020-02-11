@@ -7,7 +7,7 @@
 // fctk ... Fret-diagram Chromatic Tool kit(FCTK)
 
 // Initialization.
-require( 'chromatic' ).globalSettings( require( 'local/settings' ) );
+require( 'chromatic' );
 
 // Create the formatter.
 var ScaleGenerator = require( 'chromatic/formatter' );
@@ -46,9 +46,9 @@ function batch() {
             contemporary compositions are not easily written by the traditional
             notation system.  In order to obtain better understanding for
             polymodality, let’s extend the traditional diatonic solfège into
-            chromatic solfège. 
+            Chromatic-Solfège. 
             
-            This article will explain how to implement new chromatic solfège by
+            This article will explain how to implement new Chromatic-Solfège by
             introducing additional note names, and then it will show how to
             build fluency with the new solfege system by mechanically
             enumerating all possible intervals.
@@ -99,7 +99,7 @@ function batch() {
     c.writeTOC();
     c.writeNewPage();
 
-    c.t_header1`Diatonic-Based Notation System`;
+    c.t_header1`A Problem of the Diatonic-Based Notation System`;
     c.t_textBody`
         Modern European music notation is based on a diatonic scale; that is,
         it presumes that there are seven notes in an octave. In practical world,
@@ -160,7 +160,7 @@ function batch() {
         triple-sharp, triple-flat.
 
         `;
-    c.t_header1`Necessity of Irregular Accidental`;
+    c.t_header1`Necessity of Irregular Accidentals`;
     c.t_textBody`
         Diminished fifth and augmented fourth are enharmonically equivalent.
         Diminished fifth is an interval which consists six semitones. And so is
@@ -291,9 +291,9 @@ function batch() {
         the both requirement.
         `;
 
-    c.t_header1`A Probable Solution to Satisfy Both Harmonic Correctness and Enharmonic Correctness`;
+    c.t_header1`Satisfying Both Harmonic Correctness and Enharmonic Correctness`;
     c.t_textBody`
-        This thesis is introducing a method to satisfy both harmonic
+        In this paper, we are going to see a method to satisfy both harmonic
         correctness and enharmonic correctness without modifying the rule of
         the traditional musical notation system; the method is invented by
         Atsushi Oka.
@@ -305,10 +305,10 @@ function batch() {
         which can occur in the traditional musical notation system, and
         memorizing all of them to understand the reason of the complication.
 
-        This paper includes comprehensively studied list of every intervals.
-        Every examples slightly differ with each other. The one watching it
-        will see the reason why it need to be written with irregular
-        accidentals as if it is in a flipbook.
+        This paper includes a comprehensively examined list of every each
+        interval.  Every example looks similar with each other but there are
+        certain difference between them. I have made a best effort to show to
+        the reader the reason why the irregular accidentals are necessary. 
 
         `;
 
@@ -319,45 +319,53 @@ function batch() {
     c.writeHeader0( "Notes" );
     {
         c.t_textBody`
-            Welcome to the world of the chromatic solfège. The chromatic
-            solfege system helps to acquire better understanding of the
-            principles of beauties which is hidden behind the harmony.  This
-            section introduces note names which are used in this chromatic
-            solfege system.
+            Welcome to the world of the Chromatic-Solfège. The
+            Chromatic-Solfège system helps to acquire better understanding of
+            the principles of beauties which is hidden behind the harmony.
+            This section introduces note names which are used in this
+            Chromatic-Solfège system.
 
-            In this section, all of note names which are used in the chromatic
-            solfege are shown.
+            In this section, all of note names which are used in the
+            Chromatic-Solfège are shown.
         `;
         // This section introduces some exercises to build fluency for the note names with accidentals.
         // Read them aloud repeatedly until you can recite without seeing the actual spells.
 
         c.writeHeader1( "Natural" );
-        c.writeTextBody( 'The diatonic notes are named as the traditional solfège.' );
+        c.writeTextBody( 'Every diatonic note in Chromatic-Solfège is named in the same manner as the traditional solfège. ' );
         c.writeScore(  "example", "@do  do  re mi fa sol la ti do" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
         c.writeHeader1( "Flat" );
-        c.writeTextBody( 'When flat is added to a note, the name of the note alters. The vowel part of the name will be replaced to “\\textit{e}”. In case the vowel is already “\\textit{e}”, it will be replaced with “\\textit{a}”.' );
+        c.writeTextBody( 'Every flatted note alters its name; the vowel part of the name is replaced with “\\textit{E}” unless it is already “\\textit{E}”. In that case it is replaced with “\\textit{A}”. ' );
         c.writeScore(  "example", "@do  de  ra me fe se  le te de" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
         c.writeHeader1( "Sharp" );
-        c.writeTextBody( 'Sharp is treated in the same manner except it will be replaced with “i”. In case the vowel is already “i”, it will be replaced with “a” as well as flat.' );
+        c.writeTextBody( 'Every sharped note alters its name; the vowel part of the name is replaced with “\\textit{I}” unless it is already “\\textit{I}”. In that case it is replaced with “\\textit{A}”. ' );
         c.writeScore(  "example", "@do  di  ri ma fi si  li ta di" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
         c.writeHeader1( "Double Flat" );
-        c.writeTextBody( 'Double flat is also treated in the same manner as flat and sharp, except the vowel is replaced with “aw”.' );
+        c.writeTextBody( 'Every double-flatted note alters its name; the vowel part of the name is replaced with “\\textit{AW}”. ' );
         c.writeScore(  "example", "@do  daw raw maw faw saw law taw daw" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
         c.writeHeader1( "Double Sharp" );
-        c.writeTextBody( 'Double sharp is also treated in the same manner as double flat, except the vowel is replaced with “ai”.' );
+        c.writeTextBody( 'Every double-sharped note alters its name; the vowel part of the name is replaced with “\\textit{AI}”. ' );
         c.writeScore(  "example", "@do  dai rai mai fai sai lai tai dai" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
         c.writeHeader1( "Triple Flat" );
-        c.writeTextBody( 'Notes with triple flat are called similarily with notes with double flats, except their names end with “f”.' );
+        c.writeTextBody( 'Every triple-flatted note alters its name; the vowel part of the name is replaced with “\\textit{AE}”. ' );
         c.writeScore(  "example", "@do  dae  rae mae fae sae lae tae dae" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
         c.writeHeader1( "Triple Sharp" );
-        c.writeTextBody( 'Notes with triple sharp are called similarily with notes with double sharp, except their names end with “f”.' );
+        c.writeTextBody( 'Every triple-sharped note alters its name; the vowel part of the name is replaced with “\\textit{AO}”. ' );
         c.writeScore(  "example", "@do  dao  rao mao fao sao lao tao dao" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
+
+        c.writeHeader1( "Quadruple Flat" );
+        c.writeTextBody( 'Quadruple flatted notes can be occured in a few rare cases. Every quadruple-flatted note alters its name; the vowel part of the name is replaced with “\\textit{AES}”. ' );
+        c.writeScore(  "example", "@do  daes  raes maes faes saes laes taes daes" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
+
+        c.writeHeader1( "Quadruple Sharp" );
+        c.writeTextBody( 'Quadruple sharped notes can be occured in a few rare cases. Every quadruple-sharped note alters its name; the vowel part of the name is replaced with “\\textit{AOS}”. ' );
+        c.writeScore(  "example", "@do  daos  raos maos faos saos laos taos daos" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
     }
     c.disable();
 
