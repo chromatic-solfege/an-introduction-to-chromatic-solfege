@@ -1,3 +1,7 @@
+The Source Code of The Paper "An Introduction to Chromatic Solfege"
+===================================================================
+
+**Feb 12, 2020 -  This readme is obsolete.**
 
 	+ lytex
 		The files in this directory are script files that generate the book
