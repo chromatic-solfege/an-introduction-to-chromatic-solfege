@@ -11,6 +11,9 @@ ly-manual/**/*.tex
 ly-generated
 ly-generated/*
 .~*
+*.chromadoc.js
+query-fretdiagram-systems.*
+out
 
 
 *.atfi

@@ -21,4 +21,4 @@ out/
 bak/
 out-mov/
 out*/
-*.js
+*.chromabook.js
