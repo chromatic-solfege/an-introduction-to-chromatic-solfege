@@ -1372,9 +1372,4 @@ c.t_textBody`
 
 }
 
-c.close();
-
-
-
 // vim: spell expandtab filetype=javascript foldmethod=manual:
-
