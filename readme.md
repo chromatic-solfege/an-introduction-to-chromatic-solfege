@@ -1,51 +1,19 @@
-The Source Code of The Paper "An Introduction to Chromatic Solfege"
-===================================================================
+An Introduction to Chromatic-Solfege
+====================================
 
-**Feb 12, 2020 -  This readme is obsolete.**
-
-	+ lytex
-		The files in this directory are script files that generate the book
-		data for "Chromatic-Solfege" and "Chromatic-Solfege for Guitarists".
-		The files are not a part of the system but actual scripts that use the
-		system. Please take these as examples to grasp the usage of the system.
-		
-		- out
-			The directory where all output files go. 
-
-		- ch-???-\*
-			We call these files as ``ch-scripts''. A ch-scripts contains document
-			data and creates tex, lilypond, festival and other scripts.
-
-		- ch-000-chromatic-solfege
-			A ch-script to output the data for the book of "Chromatic-Solfege"
-
-		- ch-001-chromatic-solfege-for-guitarists-01
-		- ch-002-chromatic-solfege-for-guitarists-02
-			A ch-script to output the data for the book of "Chromatic-Solfege for
-			Guitarists". The script file was very large that it took hours to compile;
-			it divided into two files. the file-01 consists the description and file-02
-			consists fretboard-charts.
-
-		- query-fretdiagram-systems-\*
-			Temporary files that the node module "chromatic" creates. These file
-			can safely be deleted.
+Chromatic Solfege is a variant of Solfege. Solfege's note name system is base on
+a diatonic scale; therefore, by the traditional Solfege, there are some
+difficulties to read songs which are polymodal . Chromatic Solfege is based on
+the twelve-note chromatic scale and it is suitable to read such songs.
 
 
-	+ tex
-		The files in this directory are tex files of "Chromatic-Solfege" and
-		"Chromatic-Solfege for Guitarists".  The files are not a part of the
-		system. Please take these as practical applications of the system.
+In Chromatic Solfege, there are two scales as :
 
-		- chromatic-solfege.tex
-			The main file for the book "Chromatic-Solfege".
+#### The Augumented Chromatic Scale ( Ascending )
+![do di re ri mi fa fi sol si la li ti do](doc/solfege-aug.png)
 
-		- chromatic-solfege-for-guitarists.tex
-			The main file for the book "Chromatic-Solfege for Guitarists".
-		
-		- ly-generated
-			A symbolic link to "chromatic/lytex/out/" where the all automatically
-			generated files go.
+#### The Diminished Chromatic Scale ( Descending )
+![do ti te la le sol se fa mi me re ra do](doc/solfege-dim.png)
 
-		- ly-manual
-			All Lilypond scripts for both "chromatic-solfege.tex" and
-			"chromatic-solfege-for-guitarists.tex"
+
+
