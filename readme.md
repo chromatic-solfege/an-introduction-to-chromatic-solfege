@@ -17,7 +17,14 @@ Following pictures are a summary of the note names of Chromatic-Solfege.
 |---------------------------|----------------------------|
 | ![do di re ri mi fa fi sol si la li ti do][aug-small] | ![do ti te la le sol se fa mi me re ra do][dim-small] |
 
+In order to get accustomed to these note names, you may need some routines of 
+comprehensive exercise; therefore I have written a series of documentation of 
+exercises. The documentation contains music sheets, audio data and videos.
+
+I have also written some computer programs to transpose a series of notes and 
+read it aloud. I have written some exercise patterns and have let it sing.
+
 
 [aug-small]: ./docs/solfege-aug-small.png
 [dim-small]: ./docs/solfege-dim-small.png
-[vim-modeline]: # ( vim: set fo+=a: )
+[vim-modeline]: # ( vim: set spell fo+=a: )
