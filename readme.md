@@ -19,10 +19,8 @@ as *do di re ri me mi fa ...*; the modifiers are not necessary anymore.
 
 In order to get accustomed to these note names, you may need some routines of 
 comprehensive exercise; therefore, I have made a series of exercises. I have 
-written a paper about the exercises with music scores, audio data and videos.
-The paper is called [An Introduction to Chromatic-Solfege][pdf].
-
-[An Introduction to Chromatic-Solfege][pdf]
+written an article about the exercises with music scores, audio data and 
+videos.  The article is called [An Introduction to Chromatic-Solfege(pdf)][pdf].
 
 ## The Extended Chromatic-Solfege and its Exercise Patterns
 
@@ -30,16 +28,13 @@ I have extended the note naming rule of Chromatic-Solfege into a new form which
 I believe is more suitable to improve your ability of improvising. The 
 extension covers modifying the naming rule for double, triple and quadruple 
 accidentals. Those irregular accidentals are useful to analyzing pieces of 
-polymodal music.
+polymodal music. The [article][pdf] also explains about the extension.
 
 This Extended Chromatic-Solfege have backward-compatibility with the general 
-Chromatic-Solfege; therefore, is not a modified Chromatic-Solfege but extended 
+Chromatic-Solfege; hence, it is not a modified Chromatic-Solfege but extended 
 Chromatic-Solfege.
 
-And I have also made comprehensive exercises to build fluency for the note 
-names in the paper.
-
-[An Introduction to Chromatic-Solfege][pdf]
+[Download the "An Introduction to Chromatic-Solfege"(pdf)][pdf]
 
 [pdf]: https://gitlab.com/chromatic-solfege/an-introduction-to-chromatic-solfege-released/-/raw/master/introduction/an-introduction-to-chromatic-solfege.pdf
 [aug-small]: ./docs/solfege-aug-small.png
