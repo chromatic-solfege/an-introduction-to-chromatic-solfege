@@ -11,7 +11,6 @@ Jazz.  Following pictures are a summary of the note names of Chromatic-Solfege.
 | ![do di re ri mi fa fi sol si la li ti do][aug-small] | ![do ti te la le sol se fa mi me re ra do][dim-small] |
 
 ## The Comprehensive Exercise Patterns of Chromatic-Solfege
-
 Since the name system of Solfege is based on the diatonic scale, half tones are 
 usually named with a modifier such as a sharp a flat as *C♯* or *D♭*.  In 
 Chromatic-Solfege, every tone in the Chromatic-Solfege are distinctively named 
@@ -23,7 +22,6 @@ written an article about the exercises with music scores, audio data and
 videos.  The article is called [An Introduction to Chromatic-Solfege(pdf)][pdf].
 
 ## The Extended Chromatic-Solfege and its Exercise Patterns
-
 I have extended the note naming rule of Chromatic-Solfege into a new form which 
 I believe is more suitable to improve your ability of improvising. The 
 extension covers modifying the naming rule for double, triple and quadruple 
@@ -36,7 +34,20 @@ Chromatic-Solfege.
 
 [Download the "An Introduction to Chromatic-Solfege"(pdf)][pdf]
 
+
+## Source Code
+The [article][pdf] is written in [Chromadoc][chromadoc]. The source code is 
+available on [git repository][aitcs-git]. 
+
+
 [pdf]: https://gitlab.com/chromatic-solfege/an-introduction-to-chromatic-solfege-released/-/raw/master/introduction/an-introduction-to-chromatic-solfege.pdf
 [aug-small]: ./docs/solfege-aug-small.png
 [dim-small]: ./docs/solfege-dim-small.png
+[aitcs]: https://chromatic-solfege.github.io/an-introduction-to-chromatic-solfege/
+[aitcs-git]: https://github.com/chromatic-solfege/an-introduction-to-chromatic-solfege
+[chromadoc]: https://chromatic-solfege.github.io/chromadoc/
+[csfjs]: https://chromatic-solfege.github.io/chromatic-solfege-for-javascript/
+[csfly]: https://chromatic-solfege.github.io/chromatic-solfege-for-lilypond/
+[aug-small]: ./an-introduction-to-chromatic-solfege/docs/solfege-aug-small.png
+[dim-small]: ./an-introduction-to-chromatic-solfege/docs/solfege-dim-small.png
 [vim-modeline]: # ( vim: set spell fo+=a: )
