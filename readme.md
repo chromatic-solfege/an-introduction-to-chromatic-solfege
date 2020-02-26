@@ -18,21 +18,19 @@ Chromatic-Solfege, every tone in the Chromatic-Solfege are distinctively named
 as *do di re ri me mi fa ...*; the modifiers are not necessary anymore.
 
 In order to get accustomed to these note names, you may need some routines of 
-comprehensive exercise; therefore I have made a series of exercises. I have 
-written a paper about the exercises with music sheets, audio data and videos.
+comprehensive exercise; therefore, I have made a series of exercises. I have 
+written a paper about the exercises with music scores, audio data and videos.
+The paper is called [An Introduction to Chromatic-Solfege][pdf].
 
 [An Introduction to Chromatic-Solfege][pdf]
 
-At a time to write the paper, I had some difficulty to write words and music at 
-a same time. I also had some difficulty to write a large amount of musical 
-notes which should be permutated many times. Therefore, I have also written 
-some computer programs to transpose a series of notes and read them aloud and 
-sing them too.
 
-[Chromadoc][chromadoc]
+
 
 [pdf]: https://gitlab.com/chromatic-solfege/an-introduction-to-chromatic-solfege-released/-/raw/master/introduction/an-introduction-to-chromatic-solfege.pdf
 [chromadoc]: https://chromatic-solfege.github.io/chromadoc/
+[csfjs]: https://chromatic-solfege.github.io/chromatic-solfege-for-javascript/
+[csfly]: https://chromatic-solfege.github.io/chromatic-solfege-for-lilypond/
 [aug-small]: ./docs/solfege-aug-small.png
 [dim-small]: ./docs/solfege-dim-small.png
 [vim-modeline]: # ( vim: set spell fo+=a: )
