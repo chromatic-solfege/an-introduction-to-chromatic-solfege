@@ -36,8 +36,9 @@ Chromatic-Solfege.
 
 
 ## Source Code
-The [article][pdf] is written in [Chromadoc][chromadoc]. The source code is 
-available on [git repository][aitcs-git]. 
+The [An Introduction to Chromatic-Solfege][pdf] is written in 
+[Chromadoc][chromadoc]. The source code is available on [git 
+repository][aitcs-git]. 
 
 
 [pdf]: https://gitlab.com/chromatic-solfege/an-introduction-to-chromatic-solfege-released/-/raw/master/introduction/an-introduction-to-chromatic-solfege.pdf
