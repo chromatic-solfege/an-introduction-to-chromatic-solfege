@@ -42,13 +42,11 @@ repository][aitcs-git].
 
 
 [pdf]: https://gitlab.com/chromatic-solfege/an-introduction-to-chromatic-solfege-released/-/raw/master/introduction/an-introduction-to-chromatic-solfege.pdf
-[aug-small]: ./docs/solfege-aug-small.png
-[dim-small]: ./docs/solfege-dim-small.png
 [aitcs]: https://chromatic-solfege.github.io/an-introduction-to-chromatic-solfege/
 [aitcs-git]: https://github.com/chromatic-solfege/an-introduction-to-chromatic-solfege
 [chromadoc]: https://chromatic-solfege.github.io/chromadoc/
 [csfjs]: https://chromatic-solfege.github.io/chromatic-solfege-for-javascript/
 [csfly]: https://chromatic-solfege.github.io/chromatic-solfege-for-lilypond/
-[aug-small]: ./an-introduction-to-chromatic-solfege/docs/solfege-aug-small.png
-[dim-small]: ./an-introduction-to-chromatic-solfege/docs/solfege-dim-small.png
+[aug-small]: https://chromatic-solfege.github.io/an-introduction-to-chromatic-solfege/docs/solfege-aug-small.png
+[dim-small]: https://chromatic-solfege.github.io/an-introduction-to-chromatic-solfege/docs/solfege-dim-small.png
 [vim-modeline]: # ( vim: set spell fo+=a: )
