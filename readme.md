@@ -16,10 +16,10 @@ usually named with a modifier such as a sharp a flat as *C♯* or *D♭*.  In
 Chromatic-Solfege, every tone in the Chromatic-Solfege are distinctively named 
 as *do di re ri me mi fa ...*; the modifiers are not necessary anymore.
 
-In order to get accustomed to these note names, you may need some routines of 
-comprehensive exercise; therefore, I have made a series of exercises. I have 
-written an article about the exercises with music scores, audio data and 
-videos.  The article is called [An Introduction to Chromatic-Solfege(pdf)][pdf].
+In order to get accustomed to these note names, you may need some comprehensive 
+exercises; therefore, I have made a series of exercises. I have written an 
+article about the exercises with music scores, audio data and videos.  The 
+article is called [An Introduction to Chromatic-Solfege(pdf)][pdf].
 
 ## The Extended Chromatic-Solfege and its Exercise Patterns
 I have extended the note naming rule of Chromatic-Solfege into a new form which 
