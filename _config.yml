@@ -1,3 +1,4 @@
 theme: jekyll-theme-leap-day
 title: An Introduction to Chromatic-Solfege
 description: A documentation of Chromatic-Solfege and its source code to generate the documentation itself.
+google_analytics: UA-159323195-1
