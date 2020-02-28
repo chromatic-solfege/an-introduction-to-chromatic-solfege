@@ -7,366 +7,163 @@
 // Common Constant Values
 var MSG_HARMONIC_TO_ENHARMONIC = 'Harmonic First, Enharmonic Last';
 var MSG_ENHARMONIC_TO_HARMONIC = 'Enharmonic First, Harmonic Last';
+var COMMON_WORD_01 = "Read them aloud repeatedly until you can recite. ";
 
-// c.writeNewPage();
-// c.t_abstract`Hey foo bar`;
-// c.writeNewPage();
+t_abstract`
+        In modern music, many compositions are polymodal; there may be some 
+        difficulty to symbolize those compositions in traditional musical 
+        notation system such as Solfège. In order to symbolize those 
+        composition precisely, Chromatic-Solfège can be helpful.
 
-if ( DEBUG ) {
-    c.setDevelopmentMode( true );
-}
-// c.disable();
-// c.setAlwaysOutputHeader( true );
-
-// TODO Write descriptions to every harmonic intervals.
-// TODO Scales with Guitar Diagram
-
-// c.enable();
-// c.writeHeaderPart( "Note Names" );
-// c.disable();
-
-// \textbf{\textit{ UNFINISHED 29 May 2019 }} \\
-c.t_abstract`
-        In modern music, many compositions are polymodal. Now many
-        contemporary compositions are not easily written by the traditional
-        notation system.  In order to obtain better understanding for
-        polymodality, let’s extend the traditional diatonic solfège into
-        Chromatic-Solfège. 
+        Chromatic-Solfège is a variant of Solfège. While Solfège is based on
+        a diatonic scale, the Chromatic-Solfège is based on the chromatic 
+        scale. This article will introduce Chromatic-Solfège and comprehensive 
+        exercise patterns to build fluency with the new note naming rule by 
+        mathematically permutating all possible intervals.
         
-        This article will explain how to implement new Chromatic-Solfège by
-        introducing additional note names, and then it will show how to
-        build fluency with the new solfege system by mechanically
-        enumerating all possible intervals.
-
-        Not only does this article provide written materials, it also
-        provides audible materials. Every examples in this article
-        including explanations and notes can be listen.  It takes
-        approximately one hour to listen through the whole article.
-        
+        Not only does this article provide written materials, it also provides 
+        audible materials. All exercises in this article are automatically 
+        converted to singing voice data. It takes approximately one hour to 
+        listen through every exercise.
         `;
 
-c.t_header0`Introduction`;
-c.t_textBody`
-        In the modern diatonic based interval system, there are certain missing
-        intervals which do not exist without irregular accidentals such as
-        double flat, double sharp, C\cflat , F\cflat. E\csharp and B\csharp.
-        For example G\cflat does not have the perfect 4th interval without an
-        irregular flatted note C\cflat.  Enharmonically speaking, C\cflat is
-        B\cnatural; but harmonically speaking, B\cnatural from G\cflat is the
-        augmented major 3rd rather than the perfect 4th. 
+writeNewPage();
+writeTOC();
+writeNewPage();
 
-        In modern music, most tunes are played in equal temperament. Especially
-        in jazz music in 1980’s or later, the scales are premised equal
-        temperament and players frequently modulate tonality of tunes. However,
-        the music notation is still using the diatonic based interval system;
-        therefore it is still necessary to go through the complication of the
-        missing intervals.
+t_header0`Introduction`;
+t_textBody`
+        In the diatonic based interval system, there are several  
+        \textbf{irregular} notes such as C\cflat, F\cflat, E\csharp and 
+        B\csharp. C\cflat is practically B\cnatural but there are certain 
+        reasons to write it as C\cflat. 
+        
+        For example, the note a perfect 4th interval above G\cflat is C\cflat; 
+        if the note is written as B\cnatural, the interval from G\cflat would 
+        be an augmented 3rd, not the perfect 4th.
 
-        In general, it is preferable to write intervals with harmonically
-        correct name; for example, writing G\cflat major scale’s 4th note as
-        C\cflat rather than B\cnatural is preferable because B\cnatural is not
-        4th but augmented major 3rd. In practical use, however, harmonic
-        correctness is often intentionally disregarded because it does not
-        employ how to play on musical instruments; therefore it is also very
-        common to write C\cflat as B\cnatural in this case. The modern musical
-        instruments are based on equal temperament; in spite of the note that a
-        player should play is harmonically C\cflat, the player has to
-        manipulate their instrument as if the note is B\cnatural.
+        In this case, the note a perfect 4th interval above the G\cflat is 
+        said to be \textbf{enharmonically equivalent} with B\cnatural.
+        The note a perfect 4th interval above the G\cflat is said to be 
+        \textbf{harmonically} C\cflat.
+
+        In music nowadays, most tunes are played in equal temperament.  
+        Especially in jazz music in 1980’s or later, the scales are premised 
+        equal temperament. Jazz musicians are modulate their tonality during 
+        their improvisation. They are swapping around all of the notes they 
+        play by enharmonic equivalency.
+
+        Chromatic-Solfège plays great role in this situation. 
+
+        Since the traditional Solfège is based on diatonic scale, you need 
+        some extra syllables to say their note names such as D-flat, E-flat; 
+        this causes some complication to read the music.
+
+        This is where Chromatic-Solfège comes in. Chromatic-Solfège can say 
+        them in less syllables so that it gives you better understanding to
+        enharmonicity and polymodality.
+        
+        In practical world, harmonic correctness is often intentionally 
+        disregarded because it does not employ how to play on musical 
+        instruments; the modern musical instruments are based on equal 
+        temperament. Though the note that a player should play is harmonically 
+        C\cflat, the player has to manipulate their instrument as if the note 
+        is B\cnatural. Therefore, it is also common to prioritise 
+        enharmonicity than harmonicity when symbolizing music.
 
         There are many inconsistently written notes in practical world. In
-        order to obtain better and faster reading ability, let’s name all
+        order to obtain faster reading ability, let’s name all
         the intervals chromatically, and then enumerate all the possible
         irregular intervals, and we categorize them into three classes, and
         train ourselves to build fluency to the irregularity.
     `;
 
-c.writeNewPage();
-c.writeTOC();
-c.writeNewPage();
+writeNewPage();
 
-c.t_header1`A Problem of the Diatonic-Based Notation System`;
-c.t_textBody`
-    Modern European music notation is based on a diatonic scale; that is,
-    it presumes that there are seven notes in an octave. In practical world,
-    scales are not always diatonic. For example, rock music is often based on a
-    pentatonic scale which consists five notes in an octave. Jazz music
-    often uses intervals which are based on the diminished scale which
-    consists eight notes in an octave. 
-
-    In a diatonic scale, if third intervals are stacked repeatedly, the
-    entire note group spans two octaves as \textit{ [ do mi sol ti re fa la do]}. 
-    \\~
-    `;
-
-c.writeScore( 'example01', `@do do mi sol ti re fa la do`, { texGraphicWidth : 0.6 , lyTextAfter : [5,3]} );
-        
-c.t_textBody`
-    \\~
-    \\~
-
-    This property is also inherited to the notation system.  Therefore,
-    when it comes to write intervals which are not based on a diatonic
-    based scale, it will be problematic.  
-
-    For example, the diminished scale is an octatonic scale.  The
-    diminished scale is a compound of two diminished 7th chords. The
-    diminished 7th chord consists four notes; thus the diminished scale
-    consists eight notes. The four notes which belong to diminished 7th
-    chord are considered that the intervals between the notes are always
-    minor 3rd.  As mentioned above, repeatedly stacking third intervals in
-    diatonic scale spans two octaves; but in octatonic scales, stacking 3rd
-    intervals spans only an octave. There is a gap between two.
-    \\~
-    `;
-
-c.writeScore( 'example01', `@do do me se la`,   { texGraphicWidth : 0.6 , lyTextAfter : [5,3]} );
-
-c.t_textBody`
-    \\~
-    \\~
-
-    Interval between G\cflat and A is not minor third, but augmented
-    second. In order to follow the harmonic correctness, this interval
-    should be written as G\cflat and B\cdoubleflat.
-
-    \\~
-`;
-
-c.writeScore( 'example01', `@do do me se taw `, { texGraphicWidth : 0.6 , lyTextAfter : [5,3]} );
-
-c.t_textBody`
-    \\~
-    \\~
-
-    The modern European music notation system always yields such "gaps"
-    when it is used for writing intervals which are based on non-diatonic
-    scale. Such gaps become "wrinkles" on the notation system and one will
-    see them as irregular accidentals such as double-sharp, double-flat,
-    triple-sharp, triple-flat.
-
-    `;
-c.t_header1`Necessity of Irregular Accidentals`;
-c.t_textBody`
-    Diminished fifth and augmented fourth are enharmonically equivalent.
-    Diminished fifth is an interval which consists six semitones. And so is
-    augmented fourth; it is an interval which consists same six semitones. 
-
-    But those two have different functions and are used in different
-    context. Diminished fifth has a function to provoke listeners want to
-    hear smaller intervals such as major third at the next.
-
-    \\~
-    `;
-
-c.writeScore( 'example01', `@do do4 re mi fa sol la ti do || ti,4 fa' do mi `, { texGraphicWidth : 0.6 , lyTextAfter : [5,3], scmFestivalTempo:150} );
-c.t_textBody`
-    \\~
-    \\~
-
-    But augmented fourth does not has such a function; it will stay in the
-    same intervals.
-
-    \\~
-`;
-c.writeScore( 'example01', `@do fa4 sol la ti do re mi fa || fa,4 ti fa ti`, { texGraphicWidth : 0.6 , lyTextAfter : [5,3], scmFestivalTempo:150 } );
-
-
-// c.t_textBody`
-//         \csharp 9th is another example.
-//         Intervals ri fa are not major 2nd but diminished 3rd. In order to
-//         keep consistency of intervals, it is considered more consistent to
-//         write ri fa as ri ma or me fa. In the same manner, li do may be
-//         written as li ta or te do.
-//     `;
-
-
-c.t_textBody`
-    \\~
-    \\~
-
-    Therefore, any notation system should be able to distinctly show these
-    functional difference. 
-    
-    But many musical instrumental players often do not prefer to follow the
-    interval correctness.  Because most instruments are not based on
-    intervals but absolute note name. For example, a piano has keys which
-    are corresponding to musical notes and those are supposed to be pushed
-    in order to obtain the actual notes.  In such instruments, interval
-    correctness does not employ how to play it.
-
-    At this point, guitars are different. Rarely are guitarists aware what
-    note they are actually playing. In most of time, the only thing what
-    guitarists care is what "intervals" they are playing. 
-
-    On guitars, musical intervals are always appearing as the same
-    configuration no matter what key the notes are belong to.  The
-    configuration of musical notes on a fretboard of a guitar is
-    enharmonically normalized and consistently aligned. Unlike piano, there
-    are no duplicated notes which comes from note alternation.  
-    
-    The following pictures depict Cmaj7, D\cflat maj7 Dmaj7 E\cflat maj7 on
-    a fretboard of a guitar. One can see in the pictures that how the
-    tetrad consistently moves to right as they are transposed to higher
-    keys.
-
-    \\~
-    `;
-
-// FIXME this does not generate pictures correctly.
-var settings_SmallScaleChart ={ 
-    texGraphicWidth : 0.4 , lyTextAfter : [3,3], scmFestivalTempo:150, 
-    scmShowScaleDiagram:true, scmAlwaysShowZeroFret:true, scmFretRange : "(1 . 12)", scmFretPositions : "( 5 4 4 3 )" 
-};
-
-c.t_commands`\begin{figure}[h]`;
-c.t_commands`\centering`;
-c.writeScore( 'example01', `@do do4 mi sol ti`, settings_SmallScaleChart );
-c.writeScore( 'example01', `@ra do4 mi sol ti`, settings_SmallScaleChart );
-c.t_textBody`\\~`;
-c.t_textBody`\\~`;
-c.writeScore( 'example01', `@re do4 mi sol ti`, settings_SmallScaleChart );
-c.writeScore( 'example01', `@me do4 mi sol ti`, settings_SmallScaleChart );
-c.t_commands`\caption{Note Spelling with Enharmonic Consistency}`;
-c.t_commands`\end{figure}`;
-
-c.t_textBody`
-    Therefore, intervals are the first thing to come into minds of 
-    guitarists and rarely do guitarists aware what notes they are playing.
-    Pianists tent to respell notes with irregular accidentals into
-    enharmonic equivalent notes. But Enharmonically respelled musical notes
-    do not make much sense for guitarists because they do not employ how to play
-    on guitars. Rather, guitarists prefer harmonically consistent note
-    spelling as following :
-
-    \\~
-`;
-
-c.t_commands`\begin{figure}[h]`;
-c.t_commands`\centering`;
-c.writeScore( 'example01', `@do do4 mi sol ti`, settings_SmallScaleChart );
-c.writeScore( 'example01', `@do di4 ma si ta`,  settings_SmallScaleChart );
-c.t_textBody`\\~`;
-c.t_textBody`\\~`;
-c.writeScore( 'example01', `@do dai4 mai sai tai`, settings_SmallScaleChart );
-c.writeScore( 'example01', `@do dao4 mao sao tao`, settings_SmallScaleChart );
-c.t_textBody`\\~`;
-c.t_textBody`\\~`;
-c.t_commands`\caption{Note Spelling with Harmonic Correctness}`;
-c.t_commands`\end{figure}`;
-
-c.t_textBody`
-    In this way of spelling notes, one can easily see that the tetrad is
-    consistently transposed with a half step each with the drawback that
-    one cannot easily tell what notes they actually belong to. This way of
-    spelling notes eases guitarists to read musical notes; in the mean
-    time, this might be harsh to other majority of musicians.
-    
-    Unfortunately for the guitarists, the majority of musicians prefers
-    enharmonic spelling. This is also a major reason why many guitarists
-    are not able to read musical notes.
-
-    Comparing harmonic spelling and enharmonic spelling, both have their
-    advantages and disadvantages.  Enharmonic spelling denotes how to play
-    instruments but one cannot tell how it sounds because of harmonic
-    incorrectness. Harmonic spelling, though, denotes how it sounds;
-    therefore it helps one to understand the patterns laying underneath the
-    music. But it often confuses instrumental players.
-
-    They oppose to each other and it seems that there is no way to satisfy
-    the both requirement.
-    `;
-
-c.t_header1`Satisfying Both Harmonic Correctness and Enharmonic Correctness`;
-c.t_textBody`
-    In this paper, we are going to see a method to satisfy both harmonic
-    correctness and enharmonic correctness without modifying the rule of
-    the traditional musical notation system; the method is invented by
-    Atsushi Oka.
-
-    The idea is, extending traditional solfege ( [do re mi] ) into
-    chromatic to name all of semitones in the diatonic scale, and
-    memorizing the every association between harmonically spelled intervals
-    enharmonically spelled intervals, and enumerating every corner cases
-    which can occur in the traditional musical notation system, and
-    memorizing all of them to understand the reason of the complication.
-
-    This paper includes a comprehensively examined list of every each
-    interval.  Every example looks similar with each other but there are
-    certain difference between them. I have made a best effort to show to
-    the reader the reason why the irregular accidentals are necessary. 
-
-    `;
-
-
-c.writeNewPage();
-
-c.enable();
-c.writeHeader0( "Notes" );
+writeHeader0( "Notes" );
 {
-    c.t_textBody`
-        Welcome to the world of the Chromatic-Solfège. The
-        Chromatic-Solfège system helps to acquire better understanding of
-        the principles of beauties which is hidden behind the harmony.
-        This section introduces note names which are used in this
-        Chromatic-Solfège system.
-
-        In this section, all of note names which are used in the
-        Chromatic-Solfège are shown.
+    t_textBody`
+        This section introduces all of note names in Chromatic-Solfège.
+        ${COMMON_WORD_01}
     `;
-    // This section introduces some exercises to build fluency for the note names with accidentals.
-    // Read them aloud repeatedly until you can recite without seeing the actual spells.
 
-    c.writeHeader1( "Natural" );
-    c.writeTextBody( 'Every diatonic note in Chromatic-Solfège is named in the same manner as the traditional solfège. ' );
-    c.writeScore(  "example", "@do  do  re mi fa sol la ti do" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
+    writeHeader1( "Natural" );
+    writeTextBody( 'Every diatonic note in Chromatic-Solfège is named in the same manner as the traditional Solfège. ' );
+    writeScore(  "example", "@do  do  re mi fa sol la ti do" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
-    c.writeHeader1( "Flat" );
-    c.writeTextBody( 'Every flatted note alters its name; the vowel part of the name is replaced with “\\textit{E}” unless it is already “\\textit{E}”. In that case it is replaced with “\\textit{A}”. ' );
-    c.writeScore(  "example", "@do  de  ra me fe se  le te de" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
+    writeHeader1( "Flat" );
+    writeTextBody( 'Every flatted note alters its name; the vowel part of the name is replaced with “\\textit{E}” unless it is already “\\textit{E}”. In that case it is replaced with “\\textit{A}”. ' );
+    writeScore(  "example", "@do  de  ra me fe se  le te de" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
-    c.writeHeader1( "Sharp" );
-    c.writeTextBody( 'Every sharped note alters its name; the vowel part of the name is replaced with “\\textit{I}” unless it is already “\\textit{I}”. In that case it is replaced with “\\textit{A}”. ' );
-    c.writeScore(  "example", "@do  di  ri ma fi si  li ta di" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
+    writeHeader1( "Sharp" );
+    writeTextBody( 'Every sharped note alters its name; the vowel part of the name is replaced with “\\textit{I}” unless it is already “\\textit{I}”. In that case it is replaced with “\\textit{A}”. ' );
+    writeScore(  "example", "@do  di  ri ma fi si  li ta di" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
-    c.writeHeader1( "Double Flat" );
-    c.writeTextBody( 'Every double-flatted note alters its name; the vowel part of the name is replaced with “\\textit{AW}”. ' );
-    c.writeScore(  "example", "@do  daw raw maw faw saw law taw daw" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
+    writeHeader1( "Double Flat" );
+    writeTextBody( 'Every double-flatted note alters its name; the vowel part of the name is replaced with “\\textit{AW}”. ' );
+    writeScore(  "example", "@do  daw raw maw faw saw law taw daw" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
-    c.writeHeader1( "Double Sharp" );
-    c.writeTextBody( 'Every double-sharped note alters its name; the vowel part of the name is replaced with “\\textit{AI}”. ' );
-    c.writeScore(  "example", "@do  dai rai mai fai sai lai tai dai" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
+    writeHeader1( "Double Sharp" );
+    writeTextBody( 'Every double-sharped note alters its name; the vowel part of the name is replaced with “\\textit{AI}”. ' );
+    writeScore(  "example", "@do  dai rai mai fai sai lai tai dai" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
-    c.writeHeader1( "Triple Flat" );
-    c.writeTextBody( 'Every triple-flatted note alters its name; the vowel part of the name is replaced with “\\textit{AE}”. ' );
-    c.writeScore(  "example", "@do  dae  rae mae fae sae lae tae dae" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
+    writeHeader1( "Triple Flat" );
+    writeTextBody( 'Every triple-flatted note alters its name; the vowel part of the name is replaced with “\\textit{AE}”. ' );
+    writeScore(  "example", "@do  dae  rae mae fae sae lae tae dae" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
-    c.writeHeader1( "Triple Sharp" );
-    c.writeTextBody( 'Every triple-sharped note alters its name; the vowel part of the name is replaced with “\\textit{AO}”. ' );
-    c.writeScore(  "example", "@do  dao  rao mao fao sao lao tao dao" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
+    writeHeader1( "Triple Sharp" );
+    writeTextBody( 'Every triple-sharped note alters its name; the vowel part of the name is replaced with “\\textit{AO}”. ' );
+    writeScore(  "example", "@do  dao  rao mao fao sao lao tao dao" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
-    c.writeHeader1( "Quadruple Flat" );
-    c.writeTextBody( 'Quadruple flatted notes can be occured in a few rare cases. Every quadruple-flatted note alters its name; the vowel part of the name is replaced with “\\textit{AES}”. ' );
-    c.writeScore(  "example", "@do  daes  raes maes faes saes laes taes daes" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
+    writeHeader1( "Quadruple Flat" );
+    writeTextBody( 'Quadruple flatted notes can be occured in a few rare cases. Every quadruple-flatted note alters its name; the vowel part of the name is replaced with “\\textit{AES}”. ' );
+    writeScore(  "example", "@do  daes  raes maes faes saes laes taes daes" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 
-    c.writeHeader1( "Quadruple Sharp" );
-    c.writeTextBody( 'Quadruple sharped notes can be occured in a few rare cases. Every quadruple-sharped note alters its name; the vowel part of the name is replaced with “\\textit{AOS}”. ' );
-    c.writeScore(  "example", "@do  daos  raos maos faos saos laos taos daos" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
+    writeHeader1( "Quadruple Sharp" );
+    writeTextBody( 'Quadruple sharped notes can be occured in a few rare cases. Every quadruple-sharped note alters its name; the vowel part of the name is replaced with “\\textit{AOS}”. ' );
+    writeScore(  "example", "@do  daos  raos maos faos saos laos taos daos" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
 }
-c.disable();
 
-c.writeHeader0( "Chromatic Scales" );
+writeHeader0( "Chromatic Scales" );
 {
-    // TODO
-    c.t_textBody`
-        TODO The notes are able to There are two type of 
-    `;
-    c.writeHeader1( "Diminished Chromatic Scale" );
-    c.writeTextBody( '.' );
-    c.writeScore(  "example", "@do  do ra re me mi fa se sol le la te ti do" , { texGraphicWidth : 0.8 , lyTextAfter : [5,3]} );
+    writeTextBody( `
+        There are two kinds of chromatic scales; diminished chromatic scale and augmented chromatic scale.
+    `);
+
+    writeHeader1( "Ascending Chromatic Scale" );
+    writeScore( "example-sharp", "@do  do  di re ri mi fa fi sol si la li ti do" );
+    writeHeader1( "Descending Chromatic Scale" );
+    writeScore( "example-sharp", "@do  do' ti te la le sol se fa mi me re ra do" );
+
+    writeHeader1( "Exercise for Ascending and Descending Chromatic Scale" );
+    writeTextBody( `
+        The diminished chromatic scale is used when the melody is descending; 
+        the augment chromatic scale is used when the melody is ascending.
+    `);
+    writeScore( "example-sharp", "@do  do di re ri mi fa fi sol si la li ti do | do ti te la le sol se fa mi me re ra do" );
+
+    writeHeader1( "Excercises" );
+    writeScore( "example-sharp", "@do  do di re ri mi fa fi sol si la li ti do |  do ti te la le sol se fa mi me re ra do" );
+    writeScore( "example-sharp", "@do  di re ri mi fa fi sol si la li ti do di |  ra do ti te la le sol se fa mi me re ra" );
+    writeScore( "example-sharp", "@do  re ri mi fa fi sol si la li ti do di re |  re ra do ti te la le sol se fa mi me re" );
+    writeScore( "example-sharp", "@do  ri mi fa fi sol si la li ti do di re ri |  me re ra do ti te la le sol se fa mi me" );
+    writeScore( "example-sharp", "@do  mi fa fi sol si la li ti do di re ri mi |  mi me re ra do ti te la le sol se fa mi" );
+    writeScore( "example-sharp", "@do  fa fi sol si la li ti do di re ri mi fa |  fa mi me re ra do ti te la le sol se fa" );
+    writeScore( "example-sharp", "@do  fi sol si la li ti do di re ri mi fa fi |  se fa mi me re ra do ti te la le sol se" );
+    writeScore( "example-sharp", "@do sol si la li ti do di re ri mi fa fi sol | sol se fa mi me re ra do ti te la le sol" );
+    writeScore( "example-sharp", "@do  si la li ti do di re ri mi fa fi sol si |  le sol se fa mi me re ra do ti te la le" );
+    writeScore( "example-sharp", "@do  la li ti do di re ri mi fa fi sol si la |  la le sol se fa mi me re ra do ti te la" );
+    writeScore( "example-sharp", "@do  li ti do di re ri mi fa fi sol si la li |  te la le sol se fa mi me re ra do ti te" );
+    writeScore( "example-sharp", "@do  ti do di re ri mi fa fi sol si la li ti |  ti te la le sol se fa mi me re ra do ti" );
+    writeScore( "example-sharp", "@do  do di re ri mi fa fi sol si la li ti do |  do ti te la le sol se fa mi me re ra do" );
+
+    /*
+    writeScore( "example-flat",  "@do  do ra re me mi fa se sol le la te ti do | do ti te la le sol se fa mi me re ra do" );
+    writeScore( "example-sharp", "@do  do di re ri mi fa fi sol si la li ti do | do ti li la si sol fi fa mi ri re di do" );
+    */
 }
 
 
-var COMMON_WORD_01 = "Read them aloud repeatedly until you can recite without seeing the actual notes. ";
 
 // Chromatic Tool Kit (CHTK)
 var chtk = {
@@ -397,7 +194,7 @@ var chtk = {
         }
         function outputResult() {
             result = "\\absolute { " + result + " } ";
-            c.writeScore( id, result, {scmFestivalTempo:170}  );
+            writeScore( id, result, {scmFestivalTempo:170}  );
         }
         function resetResult() {
             result = '\\abs @do\' ';
@@ -435,19 +232,17 @@ var chtk = {
     },
 };
 
-c.writeHeader0( "Understanding Alterations" );
-c.writeTextBody( 
-        `In this section, two exercises to build fluency with the relation between note names are shown.`
-            + COMMON_WORD_01 
-    );
+t_header0`Understanding Alterations`;
+t_textBody`In this section, two exercises to build fluency with the relation between note names are shown. ${COMMON_WORD_01} `;
+
 {
     // Chromatic Scale 1
-    c.writeHeader1( "Horizontal Movement" );
+    writeHeader1( "Horizontal Movement" );
     {
-        c.writeHeader2( "Flat Chromatic Scale" );
-        c.writeScore( "chromatic-02-flat",     "do  do ra re me mi fa se sol le la te ti do | do ti te la le sol se fa mi me re ra do" );
+        writeHeader2( "Flat Chromatic Scale" );
+        writeScore( "chromatic-02-flat",     "do  do ra re me mi fa se sol le la te ti do | do ti te la le sol se fa mi me re ra do" );
 
-        c.writeHeader3( "Exercises for Flat Chromatic Scale" );
+        writeHeader3( "Exercises for Flat Chromatic Scale" );
         chtk.exec( 'chromatic-03-01', 'do ra re me mi fa se sol le la te ti', [ 0, 1, 0 ],  6 );
         chtk.exec( 'chromatic-03-01', 'do ra re me mi fa se sol le la te ti', [ 0, 1, 2 ],  6 );
         chtk.exec( 'chromatic-03-01', 'do ra re me mi fa se sol le la te ti', [ 2, 1, 0 ],  6 );
@@ -456,10 +251,10 @@ c.writeTextBody(
         chtk.exec( 'chromatic-03-01', 'do ra re me mi fa se sol le la te ti', [ 0, 1, 2, 3, 4 ],  6 );
         chtk.exec( 'chromatic-03-01', 'do ra re me mi fa se sol le la te ti', [ 4, 3, 2, 1, 0 ],  6 );
 
-        c.writeHeader2( "Sharp Chromatic Scale" );
-        c.writeScore( "chromatic-01-sharp",    "do  do di re ri mi fa fi sol si la li ti do | do ti li la si sol fi fa mi ri re di do" );
+        writeHeader2( "Sharp Chromatic Scale" );
+        writeScore( "chromatic-01-sharp",    "do  do di re ri mi fa fi sol si la li ti do | do ti li la si sol fi fa mi ri re di do" );
 
-        c.writeHeader3( "Exercises for Sharp Chromatic Scale" );
+        writeHeader3( "Exercises for Sharp Chromatic Scale" );
         chtk.exec( 'chromatic-03-01', 'do di re ri mi fa fi sol si la li ti', [ 0, 1, 0 ],  6 );
         chtk.exec( 'chromatic-03-01', 'do di re ri mi fa fi sol si la li ti', [ 0, 1, 2 ],  6 );
         chtk.exec( 'chromatic-03-01', 'do di re ri mi fa fi sol si la li ti', [ 2, 1, 0 ],  6 );
@@ -470,10 +265,10 @@ c.writeTextBody(
     }
 
     // Chromatic Scale 2
-    c.writeHeader1( "Vertical Movement" );
+    writeHeader1( "Vertical Movement" );
     {
-        c.writeHeader2( "Note Alteration" );
-        c.writeScore( "notename-accidentals", 
+        writeHeader2( "Note Alteration" );
+        writeScore( "notename-accidentals", 
                 "@do  do  di dai dao dai di do s do de daw dae daw de do |! " + 
                 "@re  do  di dai dao dai di do s do de daw dae daw de do |! " + 
                 "@mi  do  di dai dao dai di do s do de daw dae daw de do |! " + 
@@ -484,8 +279,8 @@ c.writeTextBody(
                 "@do  do  di dai dao dai di do s do de daw dae daw de do |! " 
             );
 
-        c.writeHeader2( "Scale Alteration" );
-        c.writeScore( "notename-accidentals", 
+        writeHeader2( "Scale Alteration" );
+        writeScore( "notename-accidentals", 
                 "@do  do  re mi fa sol la ti do       | do ti la sol fa mi re do |! " + 
 
                 "@do  di ri ma fi si li ta di         | di ta li si fi ma ri di   |! " +
@@ -508,8 +303,8 @@ c.writeTextBody(
     }
 }
 
-c.writeHeader0( `Enharmonically Equivalent Notes` );
-c.writeTextBody( `
+writeHeader0( `Enharmonically Equivalent Notes` );
+writeTextBody( `
         In this section, some of exercises to build fluency with
         harmonically equivalent notes are presented. In order to understand
         the complexity of the traditional musical notation system, the
@@ -518,74 +313,74 @@ c.writeTextBody( `
         `);
 {
     // Enharmonicity 1
-    c.writeHeader1( "Flat, Sharp and Natural" );
+    writeHeader1( "Flat, Sharp and Natural" );
     {
-        c.writeHeader3( MSG_HARMONIC_TO_ENHARMONIC );
-        c.writeScore( "enharmonic-single-accidentals-sf", "do " +
+        writeHeader3( MSG_HARMONIC_TO_ENHARMONIC );
+        writeScore( "enharmonic-single-accidentals-sf", "do " +
               "di ra  s  ri me  s  mi fe  s  ma fa  s  fi se  s  si le  s  li te  s  ti de  s  ta do  s  di ra |! " +
               "di ra  s  ta do  s  ti de  s  li te  s  si le  s  fi se  s  ma fa  s  mi fe  s  ri me  s  di ra"
         );
-        c.writeHeader3( MSG_ENHARMONIC_TO_HARMONIC );
-        c.writeScore( "enharmonic-single-accidentals-fs", "do " +
+        writeHeader3( MSG_ENHARMONIC_TO_HARMONIC );
+        writeScore( "enharmonic-single-accidentals-fs", "do " +
               "ra di  s  me ri  s  fe mi  s  fa ma  s  se fi  s  le si  s  te li  s  de ti  s  do ta  s  ra di |! " +
               "ra di  s  do ta  s  de ti  s  te li  s  le si  s  se fi  s  fa ma  s  fe mi  s  me ri  s  ra di"
         );
     }
 
 
-    c.writeHeader1( "Double Flat" );
+    writeHeader1( "Double Flat" );
     {
-        c.writeHeader3( MSG_HARMONIC_TO_ENHARMONIC );
-        c.writeScore( "enharmonic-double-flat-fn", "do " +
+        writeHeader3( MSG_HARMONIC_TO_ENHARMONIC );
+        writeScore( "enharmonic-double-flat-fn", "do " +
               "daw te s raw do  s  maw re  s  faw me  s  saw fa  s  law sol  s  taw la  s  daw te   |! " +
               "daw te s taw la  s  law sol s  saw fa  s  faw me  s  maw re   s  raw do  s  daw te " 
         );
-        c.writeHeader3( MSG_ENHARMONIC_TO_HARMONIC );
-        c.writeScore( "enharmonic-double-flat-nf", "do " +
+        writeHeader3( MSG_ENHARMONIC_TO_HARMONIC );
+        writeScore( "enharmonic-double-flat-nf", "do " +
               "te daw  s do raw   s  re maw   s  me faw   s  fa saw   s  sol law   s  la taw   s  te daw    |! " +
               "te daw  s la taw   s  sol law  s  fa saw   s  me faw   s  re maw    s  do raw   s  te daw  " 
         );
     }
 
-    c.writeHeader1( "Double Sharp" );
+    writeHeader1( "Double Sharp" );
     {
 
-        c.writeHeader3( MSG_HARMONIC_TO_ENHARMONIC );
-        c.writeScore( "enharmonic-double-sharp-sn", "do " +
+        writeHeader3( MSG_HARMONIC_TO_ENHARMONIC );
+        writeScore( "enharmonic-double-sharp-sn", "do " +
               "dai re  s  rai mi  s  mai fi  s  fai sol  s  sai la   s  lai ti  s  tai di  s  dai re |! " +
               "dai re  s  tai di  s  lai ti  s  sai la   s  fai sol  s  mai fi  s  rai mi  s  dai re " 
         );
 
-        c.writeHeader3( MSG_ENHARMONIC_TO_HARMONIC );
-        c.writeScore( "enharmonic-double-sharp-ns", "do " +
+        writeHeader3( MSG_ENHARMONIC_TO_HARMONIC );
+        writeScore( "enharmonic-double-sharp-ns", "do " +
               "re dai  s  mi rai  s  fi mai  s  sol fai  s  la sai  s  ti lai  s  di tai  s  re dai |! " +
               "re dai  s  di tai  s  ti lai  s  la sai  s  sol fai  s  fi mai  s  mi rai  s  re dai" 
         );
     }
 
-    c.writeHeader1( "Triple Flat" );
+    writeHeader1( "Triple Flat" );
     {
-        c.writeHeader3( MSG_HARMONIC_TO_ENHARMONIC );
-        c.writeScore( "enharmonic-triple-flat-fn", "do " +
+        writeHeader3( MSG_HARMONIC_TO_ENHARMONIC );
+        writeScore( "enharmonic-triple-flat-fn", "do " +
               "dae la  s  rae ti  s mae di  s  fae re   s  sae mi  s  lae fi  s  tae si  s  dae la |! " +
               "dae la  s  tae si  s lae fi  s  sae mi   s  fae re  s  mae di  s  rae ti  s  dae la" 
         );
-        c.writeHeader3( MSG_ENHARMONIC_TO_HARMONIC );
-        c.writeScore( "enharmonic-triple-flat-nf", "do " +
+        writeHeader3( MSG_ENHARMONIC_TO_HARMONIC );
+        writeScore( "enharmonic-triple-flat-nf", "do " +
               "la  dae  s  ti  rae  s di  mae  s  re  fae   s  mi  sae  s  fi  lae  s  si  tae  s  la  dae |! " +
               "la  dae  s  si  tae  s fi  lae  s  mi  sae   s  re  fae  s  di  mae  s  ti  rae  s  la  dae" 
         );
     }
 
-    c.writeHeader1( "Triple Sharp" );
+    writeHeader1( "Triple Sharp" );
     {
-        c.writeHeader3( MSG_HARMONIC_TO_ENHARMONIC );
-        c.writeScore( "enharmonic-triple-sharp-sn", "do " +
+        writeHeader3( MSG_HARMONIC_TO_ENHARMONIC );
+        writeScore( "enharmonic-triple-sharp-sn", "do " +
               "dao  me  s  rao  fa  s  mao  sol  s  fao  le  s  sao  te   s  lao  do  s  tao  re  s  dao  me |! " +
               "dao  me  s  tao  re  s  lao  do   s  sao  te  s  fao  le   s  mao  sol s  rao  fa  s  dao  me" 
         );
-        c.writeHeader3( MSG_ENHARMONIC_TO_HARMONIC );
-        c.writeScore( "enharmonic-triple-sharp-ns", "do " +
+        writeHeader3( MSG_ENHARMONIC_TO_HARMONIC );
+        writeScore( "enharmonic-triple-sharp-ns", "do " +
               "me   dao s  fa   rao   s  sol mao   s  le fao   s  te sao    s  do lao    s  re tao   s  me dao   |! " +
               "me   dao s  re   tao   s  do lao    s  te sao   s  le fao    s  sol mao   s  fa rao   s  me dao  " 
         );
@@ -594,19 +389,19 @@ c.writeTextBody( `
 
 
 
-c.writeHeader0( "Harmonically Strict Motions" );
-c.writeTextBody(
+writeHeader0( "Harmonically Strict Motions" );
+writeTextBody(
         `TODO`
 );
 {
-    c.writeHeader1( "Strict Fourth Motion" );
-    c.writeScore( "strict-fourth" , "\\abs @do' \\absolute { do fa te me' le ra' se' de fe taw maw' law raw' saw'  daw faw tae mae' lae rae' sae' dae fae }" , {scmFestivalTempo:100} );
+    writeHeader1( "Strict Fourth Motion" );
+    writeScore( "strict-fourth" , "\\abs @do' \\absolute { do fa te me' le ra' se' de fe taw maw' law raw' saw'  daw faw tae mae' lae rae' sae' dae fae }" , {scmFestivalTempo:100} );
 
-    c.writeHeader1( "Strict Fifth Motion" );
-    c.writeScore( "strict-fifth" ,  "\\abs @do' \\absolute { do sol re' la' mi' ti' fi''  di si ri' li' ma' ta' fai''  dai sai rai' lai' mai' tai' fao''  dao sao rao' lao' mao' tao' la'' }", {scmFestivalTempo:100} );
+    writeHeader1( "Strict Fifth Motion" );
+    writeScore( "strict-fifth" ,  "\\abs @do' \\absolute { do sol re' la' mi' ti' fi''  di si ri' li' ma' ta' fai''  dai sai rai' lai' mai' tai' fao''  dao sao rao' lao' mao' tao' la'' }", {scmFestivalTempo:100} );
 
-    c.writeHeader1( "Strict Minor Third Motion" );
-    c.writeScore( 
+    writeHeader1( "Strict Minor Third Motion" );
+    writeScore( 
             `\
             @do  do  me se taw s
             @di  do, me se taw s
@@ -625,8 +420,8 @@ c.writeTextBody(
             `.replace( /\n|\t\t/g, ' ' )
             );
 
-    c.writeHeader1( "Strict Minor Third Motion 2" );
-    c.writeScore( 
+    writeHeader1( "Strict Minor Third Motion 2" );
+    writeScore( 
             `\
             @do \
             do  me se taw s  te sol mi ra  s  re fa le de s |! 
@@ -637,8 +432,8 @@ c.writeTextBody(
             );
 
 
-    c.writeHeader1( "Fourth Motion" );
-    c.writeScore( 
+    writeHeader1( "Fourth Motion" );
+    writeScore( 
             "@do  do  fa te, me le  |  " +
             "@ra  do, fa te, me le  |  " +
             "@re  do, fa te, me le  |  " +
@@ -656,8 +451,8 @@ c.writeTextBody(
             "@do  do1" 
             );
 
-    c.writeHeader1( "Fifth Motion" );
-    c.writeScore( 
+    writeHeader1( "Fifth Motion" );
+    writeScore( 
             "@do   do' sol' re' la mi' |  " +
             "@ti   do, sol' re' la mi' |  " +
             "@li   do, sol' re' la mi' |  " +
@@ -678,13 +473,13 @@ c.writeTextBody(
 
 
 
-c.writeHeader0( "Transposing" );
+writeHeader0( "Transposing" );
 // TODO
-c.writeTextBody( "TODO.");
+writeTextBody( "TODO.");
 {
-    c.writeHeader1( "Diatonic Scales" );
+    writeHeader1( "Diatonic Scales" );
     {
-        var ch = require( 'chromatic' );
+        var ch = require( 'chromatic-solfege' );
         function eventhandler( eventtype, id, notes, text ) {
             if ( eventtype == 'tex' ) {
                 return (
@@ -700,99 +495,99 @@ c.writeTextBody( "TODO.");
             }
         }
 
-        c.writeHeader2( "Natural" );
-        c.writeScore( null, "do  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeHeader2( "Natural" );
+        writeScore( null, "do  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
 
-        c.writeHeader2( "Sharp" );
-        c.writeScore( null, "sol do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "re  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "la  do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "mi  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "ti  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "fi  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeHeader2( "Sharp" );
+        writeScore( null, "sol do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "re  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "la  do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "mi  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "ti  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "fi  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
 
-        c.writeHeader2( "Flat" );
-        c.writeScore( null, "fa  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "te  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "me  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "le  do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "ra  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "se  do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeHeader2( "Flat" );
+        writeScore( null, "fa  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "te  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "me  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "le  do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "ra  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "se  do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
 
-        c.writeHeader2( "Special ( Flat )" );
-        c.writeScore( null, "de  do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "fe  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeHeader2( "Special ( Flat )" );
+        writeScore( null, "de  do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "fe  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
 
-        c.writeHeader2( "Special ( Sharp )" );
-        c.writeScore( null, "di  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "si  do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "ri  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "li  do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "ma  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
-        c.writeScore( null, "ta  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeHeader2( "Special ( Sharp )" );
+        writeScore( null, "di  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "si  do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "ri  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "li  do' re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "ma  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
+        writeScore( null, "ta  do  re mi fa sol la ti do | do ti la sol fa mi re do", { eventhandler : eventhandler } );
 
 
-        c.writeHeader2( "Fourth Motion" );
+        writeHeader2( "Fourth Motion" );
 
-        c.writeScore( null, "@do'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@fa'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@te'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@me'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@le'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@ra'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@se'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@de'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@fe'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@taw' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@maw' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@law' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@raw' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@saw' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@daw' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@faw' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@tae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@mae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@lae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@rae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@sae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@dae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@fae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
-        c.writeScore( null, "@sol' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@do'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@fa'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@te'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@me'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@le'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@ra'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@se'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@de'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@fe'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@taw' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@maw' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@law' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@raw' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@saw' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@daw' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@faw' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@tae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@mae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@lae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@rae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@sae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@dae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@fae' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
+        writeScore( null, "@sol' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do }", { eventhandler : eventhandler } );
 
-        c.writeHeader2( "Fifth Motion" );
+        writeHeader2( "Fifth Motion" );
 
-        c.writeScore( null, "@do'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@sol' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@re'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@la'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@mi'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@ti'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@fi'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@di'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@si'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@ri'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@li'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@ma'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@ta'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@fai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@dai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@sai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@rai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@lai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@mai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@tai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@fao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@dao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@sao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@rao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@lao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@mao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@tao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
-        c.writeScore( null, "@si'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@do'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@sol' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@re'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@la'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@mi'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@ti'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@fi'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@di'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@si'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@ri'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@li'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@ma'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@ta'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@fai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@dai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@sai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@rai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@lai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@mai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@tai' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@fao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@dao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@sao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@rao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@lao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@mao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@tao' \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
+        writeScore( null, "@si'  \\abs \\absolute { do re mi fa sol la ti do' | do' ti la sol fa mi re do } ", { eventhandler : eventhandler } );
     }
 
-    c.writeHeader1( "Harmonically Strict Chromatic Scales" );
-    c.writeTextBody( `\
+    writeHeader1( "Harmonically Strict Chromatic Scales" );
+    writeTextBody( `\
         Generally chromatic scales are considered that they do not belong
         to any specific key.  Harmonically speaking, the chromatic scales
         also have keys when they come with harmonically correct intervals.
@@ -816,10 +611,10 @@ c.writeTextBody( "TODO.");
         };
         var keys = "do fa te me le ra se ti mi la re sol".split( ' ' );
         for ( var i of keys ) {
-            c.writeHeader2( 'Key ' + note2name[ i ] );
+            writeHeader2( 'Key ' + note2name[ i ] );
             // TODO
-            c.writeScore( i + '-01', `@${i} do re mi fa sol la ti do do ti la sol fa mi re do` );
-            c.writeScore( i + '-02', `@${i} do di re ri mi fa fi sol si la li ti do s do ti te la le sol se fa mi me re ra do` );
+            writeScore( i + '-01', `@${i} do re mi fa sol la ti do do ti la sol fa mi re do` );
+            writeScore( i + '-02', `@${i} do di re ri mi fa fi sol si la li ti do s do ti te la le sol se fa mi me re ra do` );
         }
     }
 }
@@ -896,7 +691,7 @@ var ditk = {
         return "key in " + key;
     },
     exec( scale, caption ) {
-        c.writeHeader1( caption ) ;
+        writeHeader1( caption ) ;
         for ( var ridx=0; ridx<1; ridx++ ) {
             var scale  = scale.split(' ') ;
             var key    = ditk.left_rotate( scale, ridx ).shift();
@@ -912,12 +707,12 @@ var ditk = {
              * NOTE : pos_e must be added one because the root note on the next octave must be shown there.
              * (Thu, 07 Jun 2018 12:44:30 +0900)
              */
-            c.writeScore( 'scale', '@do ' + ottava + ' \\absolute { ' + notes.slice( pos_s, pos_e + 1  ).join( ' ' ) + ' | ' + notes.slice( pos_s, pos_e + 1 ).reverse().join( ' ' )  + ' } ' );
+            writeScore( 'scale', '@do ' + ottava + ' \\absolute { ' + notes.slice( pos_s, pos_e + 1  ).join( ' ' ) + ' | ' + notes.slice( pos_s, pos_e + 1 ).reverse().join( ' ' )  + ' } ' );
 
             for ( var nidx=0; nidx<8; nidx++ ) {
-                c.writeHeader2( "" + ditk.num2interval( nidx ) + " within " + caption );
-                c.writeScore( nidx + '-01-u', "@do " + ottava + " \\absolute { " +  ditk.merge_with_offset2( notes,  nidx, pos_s ,pos_e ) + " }", {scmFestivalTempo:170} );
-                c.writeScore( nidx + '-02-d', "@do " + ottava + " \\absolute { " +  ditk.merge_with_offset2( notes,  nidx, pos_e ,pos_s ) + " }", {scmFestivalTempo:170} );
+                writeHeader2( "" + ditk.num2interval( nidx ) + " within " + caption );
+                writeScore( nidx + '-01-u', "@do " + ottava + " \\absolute { " +  ditk.merge_with_offset2( notes,  nidx, pos_s ,pos_e ) + " }", {scmFestivalTempo:170} );
+                writeScore( nidx + '-02-d', "@do " + ottava + " \\absolute { " +  ditk.merge_with_offset2( notes,  nidx, pos_e ,pos_s ) + " }", {scmFestivalTempo:170} );
             }
         }
     },
@@ -925,8 +720,8 @@ var ditk = {
 
 
 
-c.writeHeader0( "Intervals in Alterations" );
-c.writeTextBody( 
+writeHeader0( "Intervals in Alterations" );
+writeTextBody( 
         `
         In this section, all intervals in a diatonic scale and the diatonic
         scale with every possible alterations are comprehensively
@@ -1077,15 +872,15 @@ var eitk = {
         var r_notes = rotate( blowup( r_scale.split( /\s+/ ) ), rotation ) ;
 
         for ( var i=from; i<to; i++ ) {
-            c.writeHeader2( number2interval( i ) + " Which Consists " + number2word( i ) + " Half Step"  + ( 1<i ? 's' : '' ) );
-            c.writeScore( i + '-01-u', "@do' \\absolute \{ " + merge_with_offset( l_notes, r_notes,  i, 12 ,24 , 12 ) + " \}", {scmFestivalTempo:200} );
-            c.writeScore( i + '-02-d', "@do' \\absolute \{ " + merge_with_offset( l_notes, r_notes,  i, 24 ,12 , 12 ) + " \}", {scmFestivalTempo:200} );
+            writeHeader2( number2interval( i ) + " Which Consists " + number2word( i ) + " Half Step"  + ( 1<i ? 's' : '' ) );
+            writeScore( i + '-01-u', "@do' \\absolute \{ " + merge_with_offset( l_notes, r_notes,  i, 12 ,24 , 12 ) + " \}", {scmFestivalTempo:200} );
+            writeScore( i + '-02-d', "@do' \\absolute \{ " + merge_with_offset( l_notes, r_notes,  i, 24 ,12 , 12 ) + " \}", {scmFestivalTempo:200} );
         }
     },
 };
 
-c.writeHeader0( "Enharmonic Intervals" );
-c.writeTextBody( 
+writeHeader0( "Enharmonic Intervals" );
+writeTextBody( 
        `In this section, all enharmonic intervals which intentionally disregard harmonic correctness are shown.`
         + COMMON_WORD_01
     );
@@ -1093,21 +888,21 @@ c.writeTextBody(
 
     // c.writeHeader1( "Enharmonic Intervals on the Chromatic Scale" );
     {
-        c.writeHeader1( 'Intervals in Flat Chromatic Scale' );
+        writeHeader1( 'Intervals in Flat Chromatic Scale' );
         eitk.exec( 'do ra re me mi fa se sol le la te ti' );
-        c.writeHeader1( 'Intervals in Sharp Chromatic Scales' );
+        writeHeader1( 'Intervals in Sharp Chromatic Scales' );
         eitk.exec( 'do di re ri mi fa fi sol si la li ti' );
 
-        c.writeHeader1( 'Intervals from Flat to Sharp' );
+        writeHeader1( 'Intervals from Flat to Sharp' );
         eitk.exec( 'do ra re me mi fa se sol le la te ti', 'do di re ri mi fa fi sol si la li ti' );
-        c.writeHeader1( 'Intervals from Sharp to Flat' );
+        writeHeader1( 'Intervals from Sharp to Flat' );
         eitk.exec( 'do di re ri mi fa fi sol si la li ti', 'do ra re me mi fa se sol le la te ti' );
     }
 
 }
 
-c.writeHeader0( "Harmonic Intervals" );
-c.writeTextBody(
+writeHeader0( "Harmonic Intervals" );
+writeTextBody(
         "In this section, we will mathmatically permutate every possible combinations of any two notes to reveal every possible absolute intervals. " +
         "In order to acquire the absolute intervals, we transpose every possible relative intervals to every possible keys. " +
         "\n\n" +
@@ -1142,14 +937,14 @@ c.writeTextBody(
         notes_f += "@do' s do'";
         notes_s += "@do' s do'";
 
-        c.writeHeader2( caption + ` ([${interval}])`);
-        c.writeHeader3( caption + " in the Flat Chromatic Scale" );
-        c.writeScore( "advanced-intervals", "\\absolute { \\abs " + notes_f + " } ", options );
-        c.writeHeader3( caption + " in the Sharp Chromatic Scale" );
-        c.writeScore( "advanced-intervals", "\\absolute { \\abs " + notes_s + " } ", options );
+        writeHeader2( caption + ` ([${interval}])`);
+        writeHeader3( caption + " in the Flat Chromatic Scale" );
+        writeScore( "advanced-intervals", "\\absolute { \\abs " + notes_f + " } ", options );
+        writeHeader3( caption + " in the Sharp Chromatic Scale" );
+        writeScore( "advanced-intervals", "\\absolute { \\abs " + notes_s + " } ", options );
     }
 
-    c.writeHeader1( "Practical Intervals" );
+    writeHeader1( "Practical Intervals" );
 
     advancedIntervals( "do de"   , "Diminished Unison"        );
     advancedIntervals( "do do"   , "Perfect    Unison"        );
@@ -1194,7 +989,7 @@ c.writeTextBody(
     advancedIntervals( "do de'"  , "Diminished Double Octave" );
     advancedIntervals( "do do''" , "Double     Octave"        );
 
-    c.writeHeader1( "Theoretecal Intervals - Double Diminished" );
+    writeHeader1( "Theoretecal Intervals - Double Diminished" );
     advancedIntervals( "do daw"   , "Double Diminished Unison"        );
     advancedIntervals( "do raw"   , "Double Diminished Second"        );
     advancedIntervals( "do maw"   , "Double Diminished Third"         );
@@ -1210,7 +1005,7 @@ c.writeTextBody(
     advancedIntervals( "do law'"  , "Double Diminished Thirteenth"    );
     advancedIntervals( "do taw'"  , "Double Diminished Fourteenth"    );
 
-    c.writeHeader1( "Theoretecal Intervals - Double Augumented" );
+    writeHeader1( "Theoretecal Intervals - Double Augumented" );
     advancedIntervals( "do dai"   , "Double Augumented Unison"        );
     advancedIntervals( "do rai"   , "Double Augumented Second"        );
     advancedIntervals( "do mai"   , "Double Augumented Third"         );
@@ -1238,105 +1033,105 @@ c.writeTextBody(
 //         `.replace( /^\s*/, "" )
 //         );
 
-c.writeHeader0( "Scales" );
+writeHeader0( "Scales" );
 // TODO
-c.writeTextBody( 
+writeTextBody( 
         "This section introduces some exercises to build fluency. " +
         COMMON_WORD_01
     );
 {
     // ch-070 =============================================
     // TODO
-    c.writeTextBody( "In this theory, all scales are related to closest minor scale. Rotation is a method to derive all related scales on a scale. (under construction)\\" );
+    writeTextBody( "In this theory, all scales are related to closest minor scale. Rotation is a method to derive all related scales on a scale. (under construction)\\" );
     {
         // BASIC
-        c.writeHeader1( "Basic Scales" );
-        c.writeTextBody( 
+        writeHeader1( "Basic Scales" );
+        writeTextBody( 
                 // TODO
                 "This section introduces some exercises to build fluency. " +
                 COMMON_WORD_01
             );
 
-        c.writeHeader2( "Dorian Scale" );
-        c.writeScore(  "dorian-basic",                           "do(do,re,me,fa,sol,la,te)        1 2 3 4 5 6 7     1 s 1     7 6 5 4 3 2 1 "  );
-        c.writeHeader2( "Diminished Scale" );
-        c.writeScore(  'diminished-basic',                       "do(do,re,me,fa,se,le,la,ti)      1 2 3 4 5 6 7 8   1 s 1   8 7 6 5 4 3 2 1 "  );
-        c.writeHeader2( "Melodic Minor Scale" );
-        c.writeScore(  'melodic-basic',                          "do(do,re,me,fa,sol,la,ti)        1 2 3 4 5 6 7     1 s 1     7 6 5 4 3 2 1 "  );
-        c.writeHeader2( "Harmonic Minor Scale" );
-        c.writeScore(  'harmonic-basic',                         "do(do,re,me,fa,sol,le,ti)        1 2 3 4 5 6 7     1 s 1     7 6 5 4 3 2 1 "  );
-        c.writeHeader2( "Melodic Minor \\sharp 11 Scale" );
-        c.writeScore(  'melodic-s11-basic',                      "do(do,re,me,fi,sol,la,ti)        1 2 3 4 5 6 7     1 s 1     7 6 5 4 3 2 1 "  );
-        c.writeHeader2( "Wholetone Scale" );
-        c.writeScore(  'wholetone-basic',                        "do(do,re,mi,fi,si,li)            1 2 3 4 5 6       1 s 1       6 5 4 3 2 1 "  );
-        c.writeHeader2( "Augumented Scale" );
-        c.writeScore(  'augmented-basic',                        "do(do,me,mi,sol,le,ti)           1 2 3 4 5 6       1 s 1       6 5 4 3 2 1 "  );
-        c.writeHeader2( "Augumented Minor Major 7th Scale" );
-        c.writeScore(  'augmented-ma7-basic',                    "do(do,re,me,mi,se,sol,le,te,ti)  1 2 3 4 5 6 7 8 9 1 s 1 9 8 7 6 5 4 3 2 1 "  );
-        c.writeHeader2( "Augumented Natural 13th Scale" );
-        c.writeScore(  'augmented-n13-basic',                    "do(do,re,me,mi,se,le,la,te)      1 2 3 4 5 6 7 8   1 s 1   8 7 6 5 4 3 2 1 "  );
+        writeHeader2( "Dorian Scale" );
+        writeScore(  "dorian-basic",                           "do(do,re,me,fa,sol,la,te)        1 2 3 4 5 6 7     1 s 1     7 6 5 4 3 2 1 "  );
+        writeHeader2( "Diminished Scale" );
+        writeScore(  'diminished-basic',                       "do(do,re,me,fa,se,le,la,ti)      1 2 3 4 5 6 7 8   1 s 1   8 7 6 5 4 3 2 1 "  );
+        writeHeader2( "Melodic Minor Scale" );
+        writeScore(  'melodic-basic',                          "do(do,re,me,fa,sol,la,ti)        1 2 3 4 5 6 7     1 s 1     7 6 5 4 3 2 1 "  );
+        writeHeader2( "Harmonic Minor Scale" );
+        writeScore(  'harmonic-basic',                         "do(do,re,me,fa,sol,le,ti)        1 2 3 4 5 6 7     1 s 1     7 6 5 4 3 2 1 "  );
+        writeHeader2( "Melodic Minor \\sharp 11 Scale" );
+        writeScore(  'melodic-s11-basic',                      "do(do,re,me,fi,sol,la,ti)        1 2 3 4 5 6 7     1 s 1     7 6 5 4 3 2 1 "  );
+        writeHeader2( "Wholetone Scale" );
+        writeScore(  'wholetone-basic',                        "do(do,re,mi,fi,si,li)            1 2 3 4 5 6       1 s 1       6 5 4 3 2 1 "  );
+        writeHeader2( "Augumented Scale" );
+        writeScore(  'augmented-basic',                        "do(do,me,mi,sol,le,ti)           1 2 3 4 5 6       1 s 1       6 5 4 3 2 1 "  );
+        writeHeader2( "Augumented Minor Major 7th Scale" );
+        writeScore(  'augmented-ma7-basic',                    "do(do,re,me,mi,se,sol,le,te,ti)  1 2 3 4 5 6 7 8 9 1 s 1 9 8 7 6 5 4 3 2 1 "  );
+        writeHeader2( "Augumented Natural 13th Scale" );
+        writeScore(  'augmented-n13-basic',                    "do(do,re,me,mi,se,le,la,te)      1 2 3 4 5 6 7 8   1 s 1   8 7 6 5 4 3 2 1 "  );
 
         // DORIAN
-        c.writeHeader1( "Dorian Related Scales" );
-        c.writeHeader2( "Dorian Scale" );
-        c.writeScore(  "dorian-01",                  "do(do,re,me,fa,sol,la,te)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
-        c.writeHeader2( "Phrygian Scale" );
-        c.writeScore(  "dorian-02",                  "do(re,me,fa,sol,la,te,do)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
-        c.writeHeader2( "Lydian Scale" );
-        c.writeScore(  "dorian-03",                  "do(me,fa,sol,la,te,do,re)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
-        c.writeHeader2( "Mixolydian Scale" );
-        c.writeScore(  "dorian-04",                  "do(fa,sol,la,te,do,re,me)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
-        c.writeHeader2( "Aeolian Scale" );
-        c.writeScore(  "dorian-05",                  "do(sol,la,te,do,re,me,fa)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
-        c.writeHeader2( "Locrian Scale" );
-        c.writeScore(  "dorian-06",                  "do(la,te,do,re,me,fa,sol)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
-        c.writeHeader2( "Ionian Scale" );
-        c.writeScore(  "dorian-07",                  "do(te,do,re,me,fa,sol,la)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
+        writeHeader1( "Dorian Related Scales" );
+        writeHeader2( "Dorian Scale" );
+        writeScore(  "dorian-01",                  "do(do,re,me,fa,sol,la,te)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
+        writeHeader2( "Phrygian Scale" );
+        writeScore(  "dorian-02",                  "do(re,me,fa,sol,la,te,do)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
+        writeHeader2( "Lydian Scale" );
+        writeScore(  "dorian-03",                  "do(me,fa,sol,la,te,do,re)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
+        writeHeader2( "Mixolydian Scale" );
+        writeScore(  "dorian-04",                  "do(fa,sol,la,te,do,re,me)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
+        writeHeader2( "Aeolian Scale" );
+        writeScore(  "dorian-05",                  "do(sol,la,te,do,re,me,fa)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
+        writeHeader2( "Locrian Scale" );
+        writeScore(  "dorian-06",                  "do(la,te,do,re,me,fa,sol)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
+        writeHeader2( "Ionian Scale" );
+        writeScore(  "dorian-07",                  "do(te,do,re,me,fa,sol,la)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                             );
 
 
         // MELODIC
-        c.writeHeader1( "Melodic Minor Related Scales" );
+        writeHeader1( "Melodic Minor Related Scales" );
 
-        c.writeHeader2( "Melodic Minor Scale" );
-        c.writeScore(  "melodic-01",                  "do(do,re,me,fa,sol,la,ti)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
-        c.writeHeader2( "Phrygian \\natural 13th Scale" );
-        c.writeScore(  "melodic-02",                  "do(re,me,fa,sol,la,ti,do)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
-        c.writeHeader2( "Lydian \\sharp 5th Scale" );
-        c.writeScore(  "melodic-03",                  "do(me,fa,sol,la,ti,do,re)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
-        c.writeHeader2( "Mixolydian \\sharp 11th Scale" );
-        c.writeScore(  "melodic-04",                  "do(fa,sol,la,ti,do,re,me)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
-        c.writeHeader2( "Aeolian Majour Scale ( Mixolydian \\flat 13th )" );
-        c.writeScore(  "melodic-05",                  "do(sol,la,ti,do,re,me,fa)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
-        c.writeHeader2( "Locrian \\natural 9th Scale ( Super Locrian Scale )" );
-        c.writeScore(  "melodic-06",                  "do(la,ti,do,re,me,fa,sol)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
-        c.writeHeader2( "Ionian \\flat All Scale ( Altered Scale )" );
-        c.writeScore(  "melodic-07",                  "do(ti,do,re,me,fa,sol,la)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
+        writeHeader2( "Melodic Minor Scale" );
+        writeScore(  "melodic-01",                  "do(do,re,me,fa,sol,la,ti)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
+        writeHeader2( "Phrygian \\natural 13th Scale" );
+        writeScore(  "melodic-02",                  "do(re,me,fa,sol,la,ti,do)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
+        writeHeader2( "Lydian \\sharp 5th Scale" );
+        writeScore(  "melodic-03",                  "do(me,fa,sol,la,ti,do,re)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
+        writeHeader2( "Mixolydian \\sharp 11th Scale" );
+        writeScore(  "melodic-04",                  "do(fa,sol,la,ti,do,re,me)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
+        writeHeader2( "Aeolian Majour Scale ( Mixolydian \\flat 13th )" );
+        writeScore(  "melodic-05",                  "do(sol,la,ti,do,re,me,fa)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
+        writeHeader2( "Locrian \\natural 9th Scale ( Super Locrian Scale )" );
+        writeScore(  "melodic-06",                  "do(la,ti,do,re,me,fa,sol)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
+        writeHeader2( "Ionian \\flat All Scale ( Altered Scale )" );
+        writeScore(  "melodic-07",                  "do(ti,do,re,me,fa,sol,la)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                            );
 
 
         // HARMONIC
-        c.writeHeader1( "Harmonic Minor Related Scales" );
+        writeHeader1( "Harmonic Minor Related Scales" );
 
-        c.writeHeader2( "Harmonic Minor Scale" );
-        c.writeScore(  "harmonic-01",                  "do(do,re,me,fa,sol,le,ti)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
-        c.writeHeader2( "Locrian \\natural 13th Scale" );
-        c.writeScore(  "harmonic-02",                  "do(re,me,fa,sol,le,ti,do)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
-        c.writeHeader2( "Ionian \\sharp 5th Scale" );
-        c.writeScore(  "harmonic-03",                  "do(me,fa,sol,le,ti,do,re)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
-        c.writeHeader2( "Dorian \\sharp 11th Scale" );
-        c.writeScore(  "harmonic-04",                  "do(fa,sol,le,ti,do,re,me)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
-        c.writeHeader2( "Phrygian Major Scale ( Harmonic Minor Perfect 5th Below )" );
-        c.writeTextBody( "(Mixolydian \\cflat 9th \\cflat 13th)" );
-        c.writeScore(  "harmonic-05",                  "do(sol,le,ti,do,re,me,fa)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
-        c.writeHeader2( "Lydian \\sharp 9th Scale ( Super Locrian Scale )" );
-        c.writeScore(  "harmonic-06",                  "do(le,ti,do,re,me,fa,sol)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
-        c.writeHeader2( "Ionian Diminished 7th Scale ( Altered Scale )" );
-        c.writeScore(  "harmonic-07",                  "do(ti,do,re,me,fa,sol,le)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
+        writeHeader2( "Harmonic Minor Scale" );
+        writeScore(  "harmonic-01",                  "do(do,re,me,fa,sol,le,ti)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
+        writeHeader2( "Locrian \\natural 13th Scale" );
+        writeScore(  "harmonic-02",                  "do(re,me,fa,sol,le,ti,do)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
+        writeHeader2( "Ionian \\sharp 5th Scale" );
+        writeScore(  "harmonic-03",                  "do(me,fa,sol,le,ti,do,re)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
+        writeHeader2( "Dorian \\sharp 11th Scale" );
+        writeScore(  "harmonic-04",                  "do(fa,sol,le,ti,do,re,me)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
+        writeHeader2( "Phrygian Major Scale ( Harmonic Minor Perfect 5th Below )" );
+        writeTextBody( "(Mixolydian \\cflat 9th \\cflat 13th)" );
+        writeScore(  "harmonic-05",                  "do(sol,le,ti,do,re,me,fa)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
+        writeHeader2( "Lydian \\sharp 9th Scale ( Super Locrian Scale )" );
+        writeScore(  "harmonic-06",                  "do(le,ti,do,re,me,fa,sol)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
+        writeHeader2( "Ionian Diminished 7th Scale ( Altered Scale )" );
+        writeScore(  "harmonic-07",                  "do(ti,do,re,me,fa,sol,le)  1 2 3 4 5 6 7 1 s 1 7 6 5 4 3 2 1"                           );
     }
 }
 
-c.writeHeader0( "Intervals on Scales" );
+writeHeader0( "Intervals on Scales" );
 // TODO
-c.writeTextBody( 
+writeTextBody( 
         "This section introduces some exercises to build fluency. " +
         COMMON_WORD_01
     );
@@ -1354,9 +1149,9 @@ c.writeTextBody(
 
 
 if ( false ) {
-    c.writeHeader0( "Advanced Exercises" );
+    writeHeader0( "Advanced Exercises" );
     // TODO
-    c.writeTextBody( 
+    writeTextBody( 
             "This section introduces some exercises to build fluency. " +
             "Read them aloud repeatedly until you can recite without seeing the actual spells."
         );
@@ -1364,12 +1159,9 @@ if ( false ) {
     }
 }
 
-c.writeHeader0( `Conclusion` );
-c.t_textBody`
-    Conclusion.
-    `;
-{
-
+if ( false ) {
+    writeHeader0( `Conclusion` );
+    t_textBody`Conclusion.  `;
 }
 
-// vim: spell expandtab filetype=javascript foldmethod=manual:
+// vim: spell expandtab filetype=javascript foldmethod=manual fo+=a:

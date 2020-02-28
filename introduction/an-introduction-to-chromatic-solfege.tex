@@ -123,8 +123,14 @@
 % \LetLtxMacro{\orgnatural}{\natural}
 % \renewcommand{\natural}{ \caccidental{ \orgnatural } }
 
+% https://texblog.org/2011/05/02/date-and-time/
+% >>> (Fri, 28 Feb 2020 15:43:50 +0900)
+\usepackage[hhmmsstime]{datetime}
+\renewcommand{\timeseparator}{:}
+% <<< (Fri, 28 Feb 2020 15:43:50 +0900)
 
 % >>> BEGIN DOCUMENT
+
 
 \title{Chromatic Solfège for Improvisers}
 \author{Atsushi Oka}
@@ -133,7 +139,9 @@
 \begin{document}
 
 \maketitle
-
+{\centering\today\hspace{1pt}\currenttime\par}
+\bigskip
+\bigskip
 % \section{section}
 % \subsection{subsection}
 % \subsubsection{subsubsection}
